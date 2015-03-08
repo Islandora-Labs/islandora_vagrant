@@ -29,6 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "fits.sh"
   config.vm.provision :shell, :path => "fcrepo.sh", :args => home_dir
   config.vm.provision :shell, :path => "drupal.sh", :args => home_dir
+  config.vm.provision :shell, :path => "islandora_modules.sh"
   config.vm.provision :shell, :path => "tesseract.sh"
   config.vm.provision :shell, :path => "ffmpeg.sh"
   config.vm.provision :shell, :path => "warctools.sh"

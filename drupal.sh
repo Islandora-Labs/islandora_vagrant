@@ -5,7 +5,7 @@ HOME_DIR=$1
 cd $HOME_DIR
 
 # Drush and drupal deps
-apt-get -y install php5-gd php5-dev php5-xsl php-soap php5-curl php5-imagick imagemagick graphicsmagick-imagemagick-compat lame libimage-exiftool-perl bibutils poppler-utils
+apt-get -y install php5-gd php5-dev php5-xsl php-soap php5-curl php5-imagick imagemagick lame libimage-exiftool-perl bibutils poppler-utils
 sudo pecl install upload progress
 apt-get -y install drush
 a2enmod rewrite
@@ -48,7 +48,3 @@ cd sites/all/modules
 # Modules
 drush dl devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
 drush -y en devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
-
-# Islandora module
-#cp -r "$HOME_DIR/islandora/drupal/islandora" .
-#drush -y en islandora
