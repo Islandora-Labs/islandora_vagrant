@@ -13,7 +13,7 @@ apt-get -y update && apt-get -y upgrade
 apt-get -y install openssh-server
 
 # Build tools
-apt-get -y install build-essential
+apt-get -y install build-essential automake libtool
 
 # Git vim
 apt-get -y install git vim

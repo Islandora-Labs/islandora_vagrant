@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "bootstrap.sh", :args => home_dir
   config.vm.provision :shell, :path => "fcrepo.sh", :args => home_dir
   config.vm.provision :shell, :path => "drupal.sh", :args => home_dir
-  #config.vm.provision :shell, :path => "solr.sh"
+  config.vm.provision :shell, :path => "tesseract.sh"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
