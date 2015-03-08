@@ -26,6 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   home_dir = "/home/vagrant"
 
   config.vm.provision :shell, :path => "bootstrap.sh", :args => home_dir
+  config.vm.provision :shell, :path => "fits.sh"
   config.vm.provision :shell, :path => "fcrepo.sh", :args => home_dir
   config.vm.provision :shell, :path => "drupal.sh", :args => home_dir
   config.vm.provision :shell, :path => "tesseract.sh"
