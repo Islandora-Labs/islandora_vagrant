@@ -1,24 +1,28 @@
 echo "Installing all Islandora Foundation modules"
 
+# List of Islandora Foundation modules
 cd ~
 wget https://raw.githubusercontent.com/ruebot/islandora-release-manager-helper-scripts/7.x-1.5/islandora-module-list-sans-tuque.txt
 
+# Clone all Islandora Foundation modules
 cd /var/www/html/drupal/sites/all/modules
-
 cat ~/islandora-module-list-sans-tuque.txt | while read line; do
   git clone https://github.com/Islandora/$line
 done
 
+# Clone Tuque
 cd /var/www/html/drupal/sites/all
 mkdir libraries
 cd /var/www/html/drupal/sites/all/libraries
 git clone https://github.com/Islandora/tuque
 
+# Permissions and ownership
 chown -hR www-data:www-data /var/www/html/drupal/sites/all/libraries
 chown -hR www-data:www-data /var/www/html/drupal/sites/all/modules
 chmod -R 775 /var/www/html/drupal/sites/all/libraries
 chmod -R 775 /var/www/html/drupal/sites/all/modules
 
+# Enable all Islandora foundation modules
 cd /var/www/html/drupal/sites/all/modules
 drush -y en php_lib islandora objective_forms
 drush -y en islandora_solr islandora_solr_metadata islandora_solr_facet_pages islandora_solr_views
@@ -38,6 +42,7 @@ mv openseadragon-bin-0.9.129 openseadragon
 ###########################################################################
 drush -y en islandora_internet_archive_bookreader islandora_openseadragon islandora_xmlsitemap islandora_bagit islandora_simple_workflow islandora_fits islandora_marcxml islandora_oai islandora_ocr islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap
 
+# Permissions and ownership
 chown -hR www-data:www-data /var/www/html/drupal/sites/all/libraries
 chown -hR www-data:www-data /var/www/html/drupal/sites/all/modules
 chmod -R 775 /var/www/html/drupal/sites/all/libraries

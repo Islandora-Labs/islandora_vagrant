@@ -5,7 +5,10 @@ TESSERACT_VERSION=3.02.02
 
 mkdir $TESSDATA_HOME
 
+# Dependencies
 apt-get install libleptonica-dev -y --force-yes
+
+# Download and compile Tesseract
 cd /tmp
 wget "https://tesseract-ocr.googlecode.com/files/tesseract-ocr-$TESSERACT_VERSION.tar.gz"
 tar -xzvf tesseract-ocr-$TESSERACT_VERSION.tar.gz
