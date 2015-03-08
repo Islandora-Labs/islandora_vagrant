@@ -21,7 +21,7 @@ chmod -R g+w drupal
 
 # Do the install
 cd drupal
-drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-fedora4.org
+drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-development.org
 drush user-password admin --password=islandora
 
 # Set document root
