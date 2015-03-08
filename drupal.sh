@@ -5,7 +5,8 @@ HOME_DIR=$1
 cd $HOME_DIR
 
 # Drush and drupal deps
-apt-get -y install php5-gd
+apt-get -y install php5-gd php5-dev php5-xsl php-soap php5-curl
+sudo pecl install upload progress
 apt-get -y install drush
 a2enmod rewrite
 service apache2 reload
