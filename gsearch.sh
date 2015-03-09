@@ -5,6 +5,8 @@ cd /home/vagrant/git
 git clone https://github.com/discoverygarden/basic-solr-config.git
 cd basic-solr-config
 git checkout 4.x
+cd islandora_transforms
+sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' *xslt
 
 # Build GSearch
 cd /tmp
