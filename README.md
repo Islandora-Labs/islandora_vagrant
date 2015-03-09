@@ -11,8 +11,8 @@ N.B. This virtual machine **should not** be used in production.
 
 ## Use
 
-1. `git clone https://github.com/islandora-labs/islandora`
-2. `cd islandora/install`
+1. `git clone https://github.com/islandora-labs/islandora_vagrant`
+2. `cd islandora_vagrant`
 3. `vagrant up`
 
 ## Connect
@@ -30,6 +30,14 @@ MySQL:
 Tomcat Manager:
   - username: islandora
   - password: islandora
+
+Fedora:
+  - username: fedoraAdmin
+  - password: fedoraAdmin
+
+GSearch:
+  - username: fgsAdmin
+  - password: fgsAdmin
 
 You can connect to the machine via ssh: `ssh -p 2222 vagrant@localhost`
 
