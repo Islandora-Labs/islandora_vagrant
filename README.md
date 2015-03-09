@@ -46,6 +46,7 @@ The default VM login details are:
 - Tomcat 7.0.52
 - Solr 4.2.0
 - Fedora 3.8.0
+- GSearch HEAD
 - Islandora 7.x
 - PHP 5.5.9 
 - Java 7 (Oracle)

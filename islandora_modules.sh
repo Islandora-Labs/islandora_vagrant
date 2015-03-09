@@ -1,12 +1,12 @@
 echo "Installing all Islandora Foundation modules"
 
 # List of Islandora Foundation modules
-cd ~
+cd /home/vagrant
 wget https://raw.githubusercontent.com/ruebot/islandora-release-manager-helper-scripts/7.x-1.5/islandora-module-list-sans-tuque.txt
 
 # Clone all Islandora Foundation modules
 cd /var/www/html/drupal/sites/all/modules
-cat ~/islandora-module-list-sans-tuque.txt | while read line; do
+cat /home/vagrant/islandora-module-list-sans-tuque.txt | while read line; do
   git clone https://github.com/Islandora/$line
 done
 

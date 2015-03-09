@@ -29,6 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "fcrepo.sh", :args => home_dir
   config.vm.provision :shell, :path => "djatoka.sh"
   config.vm.provision :shell, :path => "solr.sh"
+  config.vm.provision :shell, :path => "gsearch.sh"
   config.vm.provision :shell, :path => "drupal.sh", :args => home_dir
   config.vm.provision :shell, :path => "islandora_modules.sh"
   config.vm.provision :shell, :path => "tesseract.sh"

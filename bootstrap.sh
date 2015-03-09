@@ -5,6 +5,7 @@
 HOME_DIR=$1
 
 cd $HOME_DIR
+mkdir ~/git
 
 # Update
 apt-get -y update && apt-get -y upgrade
