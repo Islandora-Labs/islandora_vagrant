@@ -5,7 +5,8 @@
 HOME_DIR=$1
 
 cd $HOME_DIR
-mkdir ~/git
+cd /home/vagrant
+mkdir git
 
 # Update
 apt-get -y update && apt-get -y upgrade

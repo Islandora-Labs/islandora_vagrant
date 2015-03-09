@@ -14,7 +14,12 @@ ant buildfromsource
 
 # Deploy GSearch
 cp -v /tmp/gsearch/FgsBuild/fromsource/fedoragsearch.war /var/lib/tomcat7/webapps
+
+# Sleep for 30 while Tomcat restart
+echo "Sleeping for 60 while Tomcat stack restarts"
 sudo chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch.war
+service tomcat7 restart
+sleep 60
 
 # GSearch configurations
 cd /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes
@@ -27,4 +32,5 @@ cp -v /home/vagrant/git/basic-solr-config/conf/* /usr/local/solr/collection1/con
 chown -hR tomcat7:tomcat7 /usr/local/solr
 
 # Restart Tomcat
+sudo chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch.war
 service tomcat7 restart
