@@ -8,6 +8,12 @@ git checkout 4.x
 cd islandora_transforms
 sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' *xslt
 
+# dgi_gsearch_extensions
+cd /home/vagrant/git
+git clone https://github.com/discoverygarden/dgi_gsearch_extensions.git
+cd dgi_gsearch_extensions
+mvn package
+
 # Build GSearch
 cd /tmp
 git clone https://github.com/fcrepo3/gsearch.git
@@ -17,21 +23,26 @@ ant buildfromsource
 # Deploy GSearch
 cp -v /tmp/gsearch/FgsBuild/fromsource/fedoragsearch.war /var/lib/tomcat7/webapps
 
-# Sleep for 30 while Tomcat restart
-echo "Sleeping for 60 while Tomcat stack restarts"
+# Sleep for 75 while Tomcat restart
+echo "Sleeping for 75 while Tomcat stack restarts"
 sudo chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch.war
+sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024g -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/share/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat7
 service tomcat7 restart
-sleep 60
+sleep 75
 
 # GSearch configurations
 cd /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes
 wget http://alpha.library.yorku.ca/fgsconfigFinal.zip
 unzip fgsconfigFinal.zip
-chown -hR tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch
+
+# Deploy dgi_gsearch_extensions
+cp -v /home/nruest/git/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib
 
 # Solr & GSearch configurations
 cp -v /home/vagrant/git/basic-solr-config/conf/* /usr/local/solr/collection1/conf
+cp -Rv /home/vagrant/git/basic-solr-config/islandora_transforms/* /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
 chown -hR tomcat7:tomcat7 /usr/local/solr
+chown -hR tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch
 
 # Restart Tomcat
 sudo chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch.war
