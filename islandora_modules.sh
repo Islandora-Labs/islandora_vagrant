@@ -33,6 +33,7 @@ drush -y en xml_forms xml_form_builder xml_schema_api xml_form_elements xml_form
 drush videojs-plugin
 drush pdfjs-plugin
 drush iabookreader-plugin
+drush colorbox-plugin
 #drush openseadragon-plugin -- ISLANDORA-1213 -- Installer is broken
 ####ISLANDORA-1213 WORKAROUND ############################################
 cd /var/www/html/drupal/sites/all/libraries
