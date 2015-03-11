@@ -36,7 +36,7 @@ wget http://alpha.library.yorku.ca/fgsconfigFinal.zip
 unzip fgsconfigFinal.zip
 
 # Deploy dgi_gsearch_extensions
-cp -v /home/nruest/git/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib
+cp -v /home/vagrant/git/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib
 
 # Solr & GSearch configurations
 cp -v /home/vagrant/git/basic-solr-config/conf/* /usr/local/solr/collection1/conf
