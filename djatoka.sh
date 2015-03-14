@@ -9,7 +9,7 @@ cd adore-djatoka-1.1
 mv -v * /usr/local/djatoka
 
 # Symlink kdu_compress for Large Image Solution Pack
-ln -s /usr/local/djatoka/bin/Linux-x86-64/kdu_compress /usr/local/bin/kdu_compress
+ln -s /usr/local/djatoka/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
 
 # Deploy Djatoka
 cp -v /usr/local/djatoka/dist/adore-djatoka.war /var/lib/tomcat7/webapps
