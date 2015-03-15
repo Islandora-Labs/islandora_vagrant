@@ -1,12 +1,9 @@
 echo "Installing Drupal."
 
-HOME_DIR=$1
-
-cd $HOME_DIR
-
 # Drush and drupal deps
 apt-get -y install php5-gd php5-dev php5-xsl php-soap php5-curl php5-imagick imagemagick lame libimage-exiftool-perl bibutils poppler-utils
-sudo pecl install upload progress
+pecl install uploadprogress
+sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php5/apache2/php.ini
 apt-get -y install drush
 a2enmod rewrite
 service apache2 reload
@@ -48,3 +45,16 @@ cd sites/all/modules
 # Modules
 drush dl devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
 drush -y en devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
+
+# php.ini templating
+upload_max_filesize==500M
+post_max_size==500M
+max_execution_time==100
+max_input_time==100
+
+for key in upload_max_filesize post_max_size max_execution_time max_input_time
+do
+  sed -i "s/^\($key\).*/\1 $(eval echo \${$key})/" /etc/php5/apache2/php.ini
+done
+
+service apache2 restart
