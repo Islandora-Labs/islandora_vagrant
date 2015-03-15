@@ -58,3 +58,10 @@ do
 done
 
 service apache2 restart
+
+# sites/default/files ownership
+chown -hR www-data:www-data /var/www/html/drupal/sites/default/files
+
+# Run cron
+cd /var/www/html/drupal/sites/all/modules
+drush cron
