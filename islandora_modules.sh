@@ -43,6 +43,10 @@ mv openseadragon-bin-0.9.129 openseadragon
 ###########################################################################
 drush -y en islandora_internet_archive_bookreader islandora_openseadragon islandora_xmlsitemap islandora_bagit islandora_simple_workflow islandora_fits islandora_marcxml islandora_oai islandora_ocr islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap
 
+#BagItPHP library
+cd /var/www/html/drupal/sites/all/libraries
+git clone git://github.com/scholarslab/BagItPHP.git
+
 # Permissions and ownership
 chown -hR www-data:www-data /var/www/html/drupal/sites/all/libraries
 chown -hR www-data:www-data /var/www/html/drupal/sites/all/modules
