@@ -52,3 +52,22 @@ chown -hR www-data:www-data /var/www/html/drupal/sites/all/libraries
 chown -hR www-data:www-data /var/www/html/drupal/sites/all/modules
 chmod -R 775 /var/www/html/drupal/sites/all/libraries
 chmod -R 775 /var/www/html/drupal/sites/all/modules
+
+# Set variables for Islandora modules
+
+cd /var/www/html/drupal/sites/all/modules
+drush eval "variable_set('islandora_audio_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
+drush eval "variable_set('islandora_fits_executable_path', '/usr/local/fits/fits-0.8.4/fits.sh')"
+drush eval "variable_set('islandora_lame_url', '/usr/bin/lame')"
+drush eval "variable_set('islandora_video_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
+drush eval "variable_set('islandora_video_ffmpeg_path', '/usr/local/bin/ffmpeg')"
+drush eval "variable_set('islandora_book_viewers', array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader'))"
+drush eval "variable_set('islandora_book_page_viewers', array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon'))"
+drush eval "variable_set('islandora_large_image_viewers', array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon'))"
+drush eval "variable_set('islandora_use_kakadu', TRUE)"
+drush eval "variable_set('islandora_newspaper_issue_viewers', array('name' => array('none' => 'none', 'islandora_internet_archive_bookreader' => 'islandora_internet_archive_bookreader'), 'default' => 'islandora_internet_archive_bookreader'))"
+drush eval "variable_set('islandora_newspaper_page_viewers', array('name' => array('none' => 'none', 'islandora_openseadragon' => 'islandora_openseadragon'), 'default' => 'islandora_openseadragon'))"
+drush eval "variable_set('islandora_pdf_create_fulltext', 1)"
+drush eval "variable_set('islandora_checksum_enable_checksum', TRUE)"
+drush eval "variable_set('islandora_ocr_tesseract', '/usr/local/bin/tesseract')"
+drush eval "variable_set('islandora_batch_java', '/usr/bin/java')"
