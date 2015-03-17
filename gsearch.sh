@@ -26,7 +26,7 @@ cp -v /tmp/gsearch/FgsBuild/fromsource/fedoragsearch.war /var/lib/tomcat7/webapp
 # Sleep for 75 while Tomcat restart
 echo "Sleeping for 75 while Tomcat stack restarts"
 sudo chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch.war
-sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024g -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/share/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat7
+sed -i 's#JAVA_OPTS="-Djava.awt.headless=true -Xmx128m -XX:+UseConcMarkSweepGC"#JAVA_OPTS="-Djava.awt.headless=true -Xmx1024m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC -Dkakadu.home=/usr/local/djatoka/bin/Linux-x86-64 -Djava.library.path=/usr/local/djatoka/lib/Linux-x86-64 -DLD_LIBRARY_PATH=/usr/local/djatoka/lib/Linux-x86-64"#g' /etc/default/tomcat7
 service tomcat7 restart
 sleep 75
 
@@ -36,7 +36,7 @@ wget http://alpha.library.yorku.ca/fgsconfigFinal.zip
 unzip fgsconfigFinal.zip
 
 # Deploy dgi_gsearch_extensions
-cp -v /home/nruest/git/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib
+cp -v /home/vagrant/git/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib
 
 # Solr & GSearch configurations
 cp -v /home/vagrant/git/basic-solr-config/conf/* /usr/local/solr/collection1/conf

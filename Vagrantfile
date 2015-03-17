@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", '3000']
+    vb.customize ["modifyvm", :id, "--cpus", "2"]   
   end
 
   home_dir = "/home/vagrant"
