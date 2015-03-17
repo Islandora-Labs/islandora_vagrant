@@ -21,7 +21,7 @@ chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedora.war
 chown -hR tomcat7:tomcat7 /usr/local/fedora
 service tomcat7 restart
 echo "Sleeping while Fedora starts for the first time."
-sleep 30
+sleep 45
 
 # Setup XACML Policies
 rm -v /usr/local/fedora/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
