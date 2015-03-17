@@ -1,7 +1,7 @@
 echo "Installing Sleuthkit."
 
 # Dependencies
-sudo apt-get install libafflib-dev afflib-tools libewf-dev ewf-tools
+apt-get install libafflib-dev afflib-tools libewf-dev ewf-tools -y --force-yes
 
 # Clone and compile Sleuthkit
 cd /home/vagrant/git
