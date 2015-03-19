@@ -23,6 +23,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--cpus", "2"]   
   end
 
+  config.vm.provider "vmware_fusion" do |v, override|
+    override.vm.box = "phusion/ubuntu-14.04-amd64"
+    override.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vmwarefusion.box"
+
+    v.vmx["memsize"] = "3000"
+    v.vmx["numvcpus"] = "2"
+  end
+
   home_dir = "/home/vagrant"
 
   config.vm.provision :shell, :path => "bootstrap.sh", :args => home_dir
