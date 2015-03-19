@@ -21,6 +21,7 @@ apt-get -y install build-essential automake libtool
 apt-get -y install git vim
 
 # Java (Oracle)
+sudo apt-get install -y software-properties-common
 sudo apt-get install -y python-software-properties
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
