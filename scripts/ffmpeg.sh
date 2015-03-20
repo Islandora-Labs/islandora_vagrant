@@ -1,6 +1,8 @@
 echo "Installing FFmpeg."
 
-FFMPEG_VERSION=1.1.4
+if [ -f "/vagrant/config" ]; then
+  . /vagrant/config
+fi
 
 # Setup libfaac dependency
 sudo sed -i '/^# deb.*multiverse/ s/^# //' /etc/apt/sources.list && sudo apt-get update && sudo apt-get install libfaac-dev -y --force-yes
@@ -9,8 +11,12 @@ sudo sed -i '/^# deb.*multiverse/ s/^# //' /etc/apt/sources.list && sudo apt-get
 sudo apt-get install autoconf automake build-essential libass-dev libfreetype6-dev libgpac-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev yasm libx264-dev libmp3lame-dev unzip x264 libgsm1-dev libopencore-amrnb-dev libopencore-amrwb-dev libopenjpeg-dev libschroedinger-dev libspeex-dev libvpx-dev libxvidcore-dev libdc1394-22-dev -y --force-yes
 
 # Download FFmpeg
+if [ ! -f "$DOWNLOAD_DIR/ffmpeg-$FFMPEG_VERSION.tar.gz" ]; then
+  echo "Downloading FFMpeg"
+  wget -q -O "$DOWNLOAD_DIR/ffmpeg-$FFMPEG_VERSION.tar.gz" "http://www.ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.gz"
+fi
 cd /tmp
-wget "http://www.ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.gz"
+cp "$DOWNLOAD_DIR/ffmpeg-$FFMPEG_VERSION.tar.gz" /tmp
 tar -xzvf ffmpeg-$FFMPEG_VERSION.tar.gz
 
 # Compile FFmpeg

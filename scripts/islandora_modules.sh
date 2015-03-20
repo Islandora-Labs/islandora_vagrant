@@ -1,12 +1,18 @@
 echo "Installing all Islandora Foundation modules"
 
+if [ -f "/vagrant/config" ]; then
+  . /vagrant/config
+else
+  HOME_DIR="/home/vagrant"
+fi
+
 # List of Islandora Foundation modules
-cd /home/vagrant
+cd $HOME_DIR
 wget https://raw.githubusercontent.com/ruebot/islandora-release-manager-helper-scripts/7.x-1.5/islandora-module-list-sans-tuque.txt
 
 # Clone all Islandora Foundation modules
 cd /var/www/html/drupal/sites/all/modules
-cat /home/vagrant/islandora-module-list-sans-tuque.txt | while read line; do
+cat $HOME_DIR/islandora-module-list-sans-tuque.txt | while read line; do
   git clone https://github.com/Islandora/$line
 done
 
@@ -37,9 +43,12 @@ drush colorbox-plugin
 #drush openseadragon-plugin -- ISLANDORA-1213 -- Installer is broken
 ####ISLANDORA-1213 WORKAROUND ############################################
 cd /var/www/html/drupal/sites/all/libraries
-wget http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip
-unzip openseadragon-bin-0.9.129.zip
-mv openseadragon-bin-0.9.129 openseadragon
+if [ ! -f "$DOWNLOAD_DIR/openseadragon-bin.zip" ]; then
+  echo "Downloading OpenSeadragon"
+  wget-q -O "$DOWNLOAD_DIR/openseadragon-bin.zip" "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
+fi
+unzip $DOWNLOAD_DIR/openseadragon-bin.zip -d $DRUPAL_LIBRARIES
+mv $DRUPAL_LIBRARIES/openseadragon-bin-0.9.129 $DRUPAL_LIBRARIES/openseadragon
 ###########################################################################
 drush -y en islandora_internet_archive_bookreader islandora_openseadragon islandora_xmlsitemap islandora_bagit islandora_simple_workflow islandora_fits islandora_marcxml islandora_oai islandora_ocr islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap
 

@@ -2,10 +2,15 @@
 # BASICS
 ###
 
-HOME_DIR=$1
+if [ -f "/vagrant/config" ]; then
+  . /vagrant/config
+fi
+
+if [ ! -d "$DOWNLOAD_DIR" ]; then
+  mkdir -p $DOWNLOAD_DIR
+fi
 
 cd $HOME_DIR
-cd /home/vagrant
 mkdir git
 
 # Update

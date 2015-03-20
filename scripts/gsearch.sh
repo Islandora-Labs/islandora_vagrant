@@ -1,7 +1,11 @@
 echo "Installing GSearch"
 
+if [ -f "/vagrant/config" ]; then
+  . /vagrant/config
+fi
+
 # Dependencies
-cd /home/vagrant/git
+cd $HOME_DIR/git
 git clone https://github.com/discoverygarden/basic-solr-config.git
 cd basic-solr-config
 git checkout 4.x
@@ -9,7 +13,7 @@ cd islandora_transforms
 sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' *xslt
 
 # dgi_gsearch_extensions
-cd /home/vagrant/git
+cd $HOME_DIR/git
 git clone https://github.com/discoverygarden/dgi_gsearch_extensions.git
 cd dgi_gsearch_extensions
 mvn package
@@ -36,11 +40,11 @@ wget http://alpha.library.yorku.ca/fgsconfigFinal.zip
 unzip fgsconfigFinal.zip
 
 # Deploy dgi_gsearch_extensions
-cp -v /home/vagrant/git/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib
+cp -v $HOME_DIR/git/dgi_gsearch_extensions/target/gsearch_extensions-0.1.1-jar-with-dependencies.jar /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/lib
 
 # Solr & GSearch configurations
-cp -v /home/vagrant/git/basic-solr-config/conf/* /usr/local/solr/collection1/conf
-cp -Rv /home/vagrant/git/basic-solr-config/islandora_transforms/* /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
+cp -v $HOME_DIR/git/basic-solr-config/conf/* /usr/local/solr/collection1/conf
+cp -Rv $HOME_DIR/git/basic-solr-config/islandora_transforms/* /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
 chown -hR tomcat7:tomcat7 /usr/local/solr
 chown -hR tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch
 

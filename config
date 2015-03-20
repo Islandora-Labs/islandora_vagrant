@@ -1,0 +1,24 @@
+#!/bin/sh
+echo "Using config variables"
+
+HOME_DIR="/home/vagrant"
+
+DOWNLOAD_DIR="/vagrant/downloads"
+
+DJATOKA_HOME="/usr/local/djatoka"
+
+FEDORA_VERSION=3.8.0
+FEDORA_HOME="/usr/local/fedora"
+
+FFMPEG_VERSION=1.1.4
+
+FITS_HOME="/usr/local/fits"
+FITS_VERSION=0.8.4_0
+
+SOLR_HOME="/usr/local/solr"
+SOLR_VERSION=4.2.0
+
+TESSDATA_HOME="/usr/local/share/tessdata"
+TESSERACT_VERSION=3.02.02
+
+DRUPAL_LIBRARIES="/var/www/html/drupal/sites/all/libraries"

@@ -33,16 +33,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   home_dir = "/home/vagrant"
 
-  config.vm.provision :shell, :path => "bootstrap.sh", :args => home_dir
-  config.vm.provision :shell, :path => "fits.sh"
-  config.vm.provision :shell, :path => "fcrepo.sh", :args => home_dir
-  config.vm.provision :shell, :path => "djatoka.sh"
-  config.vm.provision :shell, :path => "solr.sh"
-  config.vm.provision :shell, :path => "gsearch.sh"
-  config.vm.provision :shell, :path => "drupal.sh", :args => home_dir
-  config.vm.provision :shell, :path => "islandora_modules.sh"
-  config.vm.provision :shell, :path => "tesseract.sh"
-  config.vm.provision :shell, :path => "ffmpeg.sh"
-  config.vm.provision :shell, :path => "warctools.sh"
-  config.vm.provision :shell, :path => "sleuthkit.sh"
+  config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => home_dir
+  config.vm.provision :shell, path: "./scripts/fits.sh"
+  config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => home_dir
+  config.vm.provision :shell, path: "./scripts/djatoka.sh"
+  config.vm.provision :shell, path: "./scripts/solr.sh"
+  config.vm.provision :shell, path: "./scripts/gsearch.sh"
+  config.vm.provision :shell, path: "./scripts/drupal.sh", :args => home_dir
+  config.vm.provision :shell, path: "./scripts/islandora_modules.sh"
+  config.vm.provision :shell, path: "./scripts/tesseract.sh"
+  config.vm.provision :shell, path: "./scripts/ffmpeg.sh"
+  config.vm.provision :shell, path: "./scripts/warctools.sh"
+  config.vm.provision :shell, path: "./scripts/sleuthkit.sh"
 end

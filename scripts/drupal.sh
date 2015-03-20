@@ -1,5 +1,9 @@
 echo "Installing Drupal."
 
+if [ -f "/vagrant/config" ]; then
+  . /vagrant/config
+fi
+
 # Drush and drupal deps
 apt-get -y install php5-gd php5-dev php5-xsl php-soap php5-curl php5-imagick imagemagick lame libimage-exiftool-perl bibutils poppler-utils
 pecl install uploadprogress
