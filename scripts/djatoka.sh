@@ -1,17 +1,23 @@
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
 fi
 
 
 echo "Installing Djatoka"
 
 # Setup install path and download Djatoka
-mkdir $DJATOKA_HOME
-cd /tmp
+if [ ! -d $DJATOKA_HOME ]; then
+  mkdir $DJATOKA_HOME
+fi
+
 if [ ! -f "$DOWNLOAD_DIR/adore-djatoka.tar.gz" ]; then
   echo "Downloading Adore-Djatoka"
   wget -q -O "$DOWNLOAD_DIR/adore-djatoka.tar.gz" "http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz"
 fi
+
+cd /tmp
 cp "$DOWNLOAD_DIR/adore-djatoka.tar.gz" /tmp
 tar -xzvf adore-djatoka.tar.gz
 cd adore-djatoka-1.1

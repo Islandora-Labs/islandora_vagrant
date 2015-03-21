@@ -1,11 +1,15 @@
 echo "Installing FITS"
 
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
 fi
 
 # Setup FITS_HOME
-mkdir $FITS_HOME
+if [ ! -d $FITS_HOME ]; then
+  mkdir $FITS_HOME
+fi
 sudo chown vagrant:vagrant $FITS_HOME
 
 # Download and deploy FITS

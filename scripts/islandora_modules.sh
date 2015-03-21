@@ -1,9 +1,9 @@
 echo "Installing all Islandora Foundation modules"
 
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
-else
-  HOME_DIR="/home/vagrant"
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
 fi
 
 # List of Islandora Foundation modules
@@ -18,7 +18,9 @@ done
 
 # Clone Tuque
 cd /var/www/html/drupal/sites/all
-mkdir libraries
+if [ ! -d libraries ]; then
+  mkdir libraries
+fi
 cd /var/www/html/drupal/sites/all/libraries
 git clone https://github.com/Islandora/tuque
 
@@ -45,7 +47,7 @@ drush colorbox-plugin
 cd /var/www/html/drupal/sites/all/libraries
 if [ ! -f "$DOWNLOAD_DIR/openseadragon-bin.zip" ]; then
   echo "Downloading OpenSeadragon"
-  wget-q -O "$DOWNLOAD_DIR/openseadragon-bin.zip" "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
+  wget -q -O "$DOWNLOAD_DIR/openseadragon-bin.zip" "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
 fi
 unzip $DOWNLOAD_DIR/openseadragon-bin.zip -d $DRUPAL_LIBRARIES
 mv $DRUPAL_LIBRARIES/openseadragon-bin-0.9.129 $DRUPAL_LIBRARIES/openseadragon

@@ -2,8 +2,10 @@
 # BASICS
 ###
 
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
 fi
 
 if [ ! -d "$DOWNLOAD_DIR" ]; then
@@ -11,7 +13,9 @@ if [ ! -d "$DOWNLOAD_DIR" ]; then
 fi
 
 cd $HOME_DIR
-mkdir git
+if [ ! -d "$HOME_DIR/git" ]; then
+  mkdir git
+fi
 
 # Update
 apt-get -y update && apt-get -y upgrade

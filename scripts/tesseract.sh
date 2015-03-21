@@ -1,10 +1,14 @@
 echo "Installing Tesseract"
 
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
 fi
 
-mkdir $TESSDATA_HOME
+if [ ! -d "$TESSDATA_HOME" ]; then
+  mkdir $TESSDATA_HOME
+fi
 
 # Dependencies
 apt-get install libleptonica-dev -y --force-yes

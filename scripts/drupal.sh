@@ -1,7 +1,9 @@
 echo "Installing Drupal."
 
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
 fi
 
 # Drush and drupal deps
@@ -43,7 +45,9 @@ rm /var/www/html/index.html
 service apache2 restart
 
 # Make the modules directory
-mkdir -p sites/all/modules
+if [ ! -d sites/all/modules ]; then
+  mkdir -p sites/all/modules
+fi
 cd sites/all/modules
 
 # Modules

@@ -1,7 +1,9 @@
 echo "Installing Sleuthkit."
 
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
 fi
 
 # Dependencies

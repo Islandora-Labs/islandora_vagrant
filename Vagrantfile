@@ -31,18 +31,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.vmx["numvcpus"] = "2"
   end
 
-  home_dir = "/home/vagrant"
+  shared_dir = "/vagrant"
 
-  config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => home_dir
-  config.vm.provision :shell, path: "./scripts/fits.sh"
-  config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => home_dir
-  config.vm.provision :shell, path: "./scripts/djatoka.sh"
-  config.vm.provision :shell, path: "./scripts/solr.sh"
-  config.vm.provision :shell, path: "./scripts/gsearch.sh"
-  config.vm.provision :shell, path: "./scripts/drupal.sh", :args => home_dir
-  config.vm.provision :shell, path: "./scripts/islandora_modules.sh"
-  config.vm.provision :shell, path: "./scripts/tesseract.sh"
-  config.vm.provision :shell, path: "./scripts/ffmpeg.sh"
-  config.vm.provision :shell, path: "./scripts/warctools.sh"
-  config.vm.provision :shell, path: "./scripts/sleuthkit.sh"
+  config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/fits.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/islandora_modules.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
 end

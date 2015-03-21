@@ -1,26 +1,43 @@
 echo "Installing Fedora."
 
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
+fi
+
+# Prepare $FEDORA_HOME
+if [ ! -d $FEDORA_HOME ]; then
+  mkdir $FEDORA_HOME
+fi
+chown tomcat7:tomcat7 $FEDORA_HOME
+chmod g-w $FEDORA_HOME
+
+if [ ! -f "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" ]; then
+  echo "Downloading Fedora"
+  # Download fcrepo
+  wget -q -O "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" "http://downloads.sourceforge.net/project/fedora-commons/fedora/$FEDORA_VERSION/fcrepo-installer-$FEDORA_VERSION.jar"
 fi
 
 # Get install properties
 cd $HOME_DIR
-wget https://gist.githubusercontent.com/ruebot/d7c2298f47798adb1111/raw/e7a179dca6cd12a3c60dfa6a32ba4f522c45f52b/install.properties
+cp "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" $HOME_DIR
 
-# Prepare $FEDORA_HOME
-mkdir /usr/local/fedora
-chown tomcat7:tomcat7 /usr/local/fedora
-chmod g-w /usr/local/fedora
-
-cd $DOWNLOAD_DIR
-if [ ! -f "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" ]; then
-  echo "Downloading Fedora"
-  # Download fcrepo
-  wget -q http://downloads.sourceforge.net/project/fedora-commons/fedora/$FEDORA_VERSION/fcrepo-installer-$FEDORA_VERSION.jar
+if [ ! -f "$DOWNLOAD_DIR/install.properties" ]; then
+  wget -O "$DOWNLOAD_DIR/install.properties" https://gist.githubusercontent.com/ruebot/d7c2298f47798adb1111/raw/e7a179dca6cd12a3c60dfa6a32ba4f522c45f52b/install.properties
 fi
 
+cp "$DOWNLOAD_DIR/install.properties" $HOME_DIR
 java -jar fcrepo-installer-$FEDORA_VERSION.jar install.properties
+
+if [ $? -ne 0 ]; then
+  # Had a corrupt jarfile in cache, if can't install then redownload it
+  echo "Problem with jar file, redownloading"
+  rm -f "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" 
+  wget -q -O "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" "http://downloads.sourceforge.net/project/fedora-commons/fedora/$FEDORA_VERSION/fcrepo-installer-$FEDORA_VERSION.jar"
+  cp "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" $HOME_DIR
+  java -jar fcrepo-installer-$FEDORA_VERSION.jar install.properties
+fi
 
 # Deploy fcrepo
 chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedora.war

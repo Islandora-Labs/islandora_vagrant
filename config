@@ -1,9 +1,9 @@
 #!/bin/sh
-echo "Using config variables"
 
 HOME_DIR="/home/vagrant"
 
-DOWNLOAD_DIR="/vagrant/downloads"
+# Shared comes from shell provisioner in VagrantFile
+DOWNLOAD_DIR="$SHARED_DIR/downloads"
 
 DJATOKA_HOME="/usr/local/djatoka"
 

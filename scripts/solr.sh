@@ -1,7 +1,9 @@
 echo "Installing Solr"
 
-if [ -f "/vagrant/config" ]; then
-  . /vagrant/config
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
 fi
 
 # Download Solr
@@ -14,7 +16,9 @@ cp "$DOWNLOAD_DIR/solr-$SOLR_VERSION.tgz" /tmp
 tar -xzvf solr-$SOLR_VERSION.tgz
 
 # Prepare SOLR_HOME
-mkdir $SOLR_HOME
+if [ ! -d $SOLR_HOME ]; then
+  mkdir $SOLR_HOME
+fi
 cd /tmp/solr-$SOLR_VERSION/example/solr
 mv -v * $SOLR_HOME
 chown -hR tomcat7:tomcat7 $SOLR_HOME
