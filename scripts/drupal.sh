@@ -1,5 +1,11 @@
 echo "Installing Drupal."
 
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
+fi
+
 # Drush and drupal deps
 apt-get -y install php5-gd php5-dev php5-xsl php-soap php5-curl php5-imagick imagemagick lame libimage-exiftool-perl bibutils poppler-utils
 pecl install uploadprogress
@@ -39,7 +45,9 @@ rm /var/www/html/index.html
 service apache2 restart
 
 # Make the modules directory
-mkdir -p sites/all/modules
+if [ ! -d sites/all/modules ]; then
+  mkdir -p sites/all/modules
+fi
 cd sites/all/modules
 
 # Modules
