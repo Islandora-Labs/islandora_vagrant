@@ -32,26 +32,28 @@ chmod -R 775 /var/www/html/drupal/sites/all/modules
 
 # Enable all Islandora foundation modules
 cd /var/www/html/drupal/sites/all/modules
+# Check for a user's .drush folder, create if it doesn't exist
+if [ ! -d "$HOME_DIR/.drush" ]; then
+  mkdir "$HOME_DIR/.drush"
+  chown vagrant:vagrant $HOME_DIR/.drush
+fi
+# Mov OpenSeadragon drush file to user's .drush folder
+if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islandora_openseadragon/islandora_openseadragon.drush.inc" ]; then
+  mv "/var/www/html/drupal/sites/all/modules/islandora_openseadragon/islandora_openseadragon.drush.inc" "$HOME_DIR/.drush"
+fi
+
 drush -y en php_lib islandora objective_forms
 drush -y en islandora_solr islandora_solr_metadata islandora_solr_facet_pages islandora_solr_views
 drush -y en islandora_basic_collection islandora_pdf islandora_audio islandora_book islandora_compound_object islandora_disk_image islandora_entities islandora_entities_csv_import islandora_basic_image islandora_large_image islandora_newspaper islandora_video islandora_web_archive
 drush -y en islandora_premis islandora_checksum islandora_checksum_checker
 drush -y en islandora_book_batch islandora_image_annotation islandora_pathauto islandora_pdfjs islandora_videojs islandora_jwplayer
 drush -y en xml_forms xml_form_builder xml_schema_api xml_form_elements xml_form_api jquery_update zip_importer islandora_basic_image islandora_bibliography islandora_compound_object islandora_google_scholar islandora_scholar_embargo islandora_solr_config citation_exporter doi_importer endnotexml_importer pmid_importer ris_importer
+drush cache-clear drush
 drush videojs-plugin
 drush pdfjs-plugin
 drush iabookreader-plugin
 drush colorbox-plugin
-#drush openseadragon-plugin -- ISLANDORA-1213 -- Installer is broken
-####ISLANDORA-1213 WORKAROUND ############################################
-cd /var/www/html/drupal/sites/all/libraries
-if [ ! -f "$DOWNLOAD_DIR/openseadragon-bin.zip" ]; then
-  echo "Downloading OpenSeadragon"
-  wget -q -O "$DOWNLOAD_DIR/openseadragon-bin.zip" "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
-fi
-unzip $DOWNLOAD_DIR/openseadragon-bin.zip -d $DRUPAL_LIBRARIES
-mv $DRUPAL_LIBRARIES/openseadragon-bin-0.9.129 $DRUPAL_LIBRARIES/openseadragon
-###########################################################################
+drush openseadragon-plugin
 drush -y en islandora_internet_archive_bookreader islandora_openseadragon islandora_xmlsitemap islandora_bagit islandora_simple_workflow islandora_fits islandora_marcxml islandora_oai islandora_ocr islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap
 
 #BagItPHP library
