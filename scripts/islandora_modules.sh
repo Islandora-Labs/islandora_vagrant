@@ -49,9 +49,9 @@ if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islando
 fi
 
 # Mov pdf.js drush file to user's .drush folder
-#if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" ]; then
-#  mv "/var/www/html/drupal/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" "$HOME_DIR/.drush"
-#fi
+if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" ]; then
+  mv "/var/www/html/drupal/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" "$HOME_DIR/.drush"
+fi
 
 # Mov IA Bookreader drush file to user's .drush folder
 if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islandora_internet_archive_bookreader/islandora_internet_archive_bookreader.drush.inc" ]; then
