@@ -23,18 +23,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--cpus", "2"]   
   end
 
-  home_dir = "/home/vagrant"
+  config.vm.provider "vmware_fusion" do |v, override|
+    override.vm.box = "phusion/ubuntu-14.04-amd64"
+    override.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vmwarefusion.box"
 
-  config.vm.provision :shell, :path => "bootstrap.sh", :args => home_dir
-  config.vm.provision :shell, :path => "fits.sh"
-  config.vm.provision :shell, :path => "fcrepo.sh", :args => home_dir
-  config.vm.provision :shell, :path => "djatoka.sh"
-  config.vm.provision :shell, :path => "solr.sh"
-  config.vm.provision :shell, :path => "gsearch.sh"
-  config.vm.provision :shell, :path => "drupal.sh", :args => home_dir
-  config.vm.provision :shell, :path => "islandora_modules.sh"
-  config.vm.provision :shell, :path => "tesseract.sh"
-  config.vm.provision :shell, :path => "ffmpeg.sh"
-  config.vm.provision :shell, :path => "warctools.sh"
-  config.vm.provision :shell, :path => "sleuthkit.sh"
+    v.vmx["memsize"] = "3000"
+    v.vmx["numvcpus"] = "2"
+  end
+
+  shared_dir = "/vagrant"
+
+  config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/fits.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/islandora_modules.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
 end

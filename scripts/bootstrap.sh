@@ -2,11 +2,20 @@
 # BASICS
 ###
 
-HOME_DIR=$1
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/config" ]; then
+  . $SHARED_DIR/config
+fi
+
+if [ ! -d "$DOWNLOAD_DIR" ]; then
+  mkdir -p $DOWNLOAD_DIR
+fi
 
 cd $HOME_DIR
-cd /home/vagrant
-mkdir git
+if [ ! -d "$HOME_DIR/git" ]; then
+  mkdir git
+fi
 
 # Update
 apt-get -y update && apt-get -y upgrade
@@ -21,6 +30,7 @@ apt-get -y install build-essential automake libtool
 apt-get -y install git vim
 
 # Java (Oracle)
+sudo apt-get install -y software-properties-common
 sudo apt-get install -y python-software-properties
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
