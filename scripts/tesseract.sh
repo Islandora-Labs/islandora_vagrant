@@ -8,6 +8,7 @@ fi
 
 if [ ! -d "$TESSDATA_HOME" ]; then
   mkdir $TESSDATA_HOME
+  chmod 755 $TESSDATA_HOME
 fi
 
 # Dependencies
@@ -24,3 +25,13 @@ tar -xzvf tesseract-ocr-$TESSERACT_VERSION.tar.gz
 cd tesseract-ocr && ./autogen.sh && ./configure && make && sudo make install && sudo ldconfig
 chown -hR vagrant:vagrant $TESSDATA_HOME
 chmod -R 744 $TESSDATA_HOME
+
+# Download and install some default languages
+cd /tmp
+wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
+wget https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.fra.tar.gz
+
+tar -xzvf tesseract-ocr-3.02.eng.tar.gz --strip-components 2 -C $TESSDATA_HOME
+tar -xzvf tesseract-ocr-3.02.fra.tar.gz --strip-components 2 -C $TESSDATA_HOME
+chown -hR vagrant:vagrant $TESSDATA_HOME
+chmod -R 775 $TESSDATA_HOME
