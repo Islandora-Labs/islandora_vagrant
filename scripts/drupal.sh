@@ -27,16 +27,33 @@ cd drupal
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-development.org
 drush user-password admin --password=islandora
 
+# Enable proxy module
+ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
+
 # Set document root
-sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/drupal|' /etc/apache2/sites-enabled/000-default.conf
+sed -i 's|DocumentRoot /var/www/html$|DocumentRoot /var/www/html/drupal|' /etc/apache2/sites-enabled/000-default.conf
 
 # Set override for drupal directory
-# TODO Don't do this in main apache conf
-sed -i '$i<Directory /var/www/html/drupal>' /etc/apache2/apache2.conf
-sed -i '$i\\tOptions Indexes FollowSymLinks' /etc/apache2/apache2.conf
-sed -i '$i\\tAllowOverride All' /etc/apache2/apache2.conf
-sed -i '$i\\tRequire all granted' /etc/apache2/apache2.conf
-sed -i '$i</Directory>' /etc/apache2/apache2.conf
+# Now inserting into VirtualHost container - whikloj (2015-04-30)
+if [ $(grep -c "ProxyPass" /etc/apache2/sites-enabled/000-default.conf) -eq 0 ]; then
+  sed -i '/<\/VirtualHost>/i \
+\t<Directory /var/www/html/drupal>\
+\t\tOptions Indexes FollowSymLinks\
+\t\tAllowOverride All\
+\t\tRequire all granted\
+\t</Directory>\
+\tProxyPass /fedora/get http://localhost:8080/fedora/get\
+\tProxyPassReverse /fedora/get http://localhost:8080/fedora/get\
+\tProxyPass /fedora/services http://localhost:8080/fedora/services\
+\tProxyPassReverse /fedora/services http://localhost:8080/fedora/services\
+\tProxyPass /fedora/describe http://localhost:8080/fedora/describe\
+\tProxyPassReverse /fedora/describe http://localhost:8080/fedora/describe\
+\tProxyPass /fedora/risearch http://localhost:8080/fedora/risearch\
+\tProxyPassReverse /fedora/risearch http://localhost:8080/fedora/risearch\
+\tProxyPass /adore-djatoka http://localhost:8080/adore-djatoka\
+\tProxyPassReverse /adore-djatoka http://localhost:8080/adore-djatoka' /etc/apache2/sites-enabled/000-default.conf
+fi
+
 
 # Torch the default index.html
 rm /var/www/html/index.html
