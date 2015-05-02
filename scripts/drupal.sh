@@ -29,6 +29,9 @@ drush user-password admin --password=islandora
 
 # Enable proxy module
 ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
+ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled/proxy_http.load
+ln -s /etc/apache2/mods-available/proxy_html.load /etc/apache2/mods-enabled/proxy_html.load
+ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 
 # Set document root
 sed -i 's|DocumentRoot /var/www/html$|DocumentRoot /var/www/html/drupal|' /etc/apache2/sites-enabled/000-default.conf
@@ -42,6 +45,13 @@ if [ $(grep -c "ProxyPass" /etc/apache2/sites-enabled/000-default.conf) -eq 0 ];
 \t\tAllowOverride All\
 \t\tRequire all granted\
 \t</Directory>\
+\
+\tProxyRequests Off\
+\tProxyPreserveHost On\
+\t<Proxy \*>\ 
+\t\tOrder deny,allow\
+\t\tAllow from all\ 
+\t</Proxy>\
 \tProxyPass /fedora/get http://localhost:8080/fedora/get\
 \tProxyPassReverse /fedora/get http://localhost:8080/fedora/get\
 \tProxyPass /fedora/services http://localhost:8080/fedora/services\
