@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
   config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
-  config.vm.network :forwarded_port, guest: 80, host: 8000 # Apache
+  config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", '3000']
