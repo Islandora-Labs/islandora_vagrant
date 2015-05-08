@@ -27,16 +27,53 @@ cd drupal
 drush si -y --db-url=mysql://root:islandora@localhost/drupal7 --site-name=islandora-development.org
 drush user-password admin --password=islandora
 
+# Enable proxy module
+ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled/proxy.load
+ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled/proxy_http.load
+ln -s /etc/apache2/mods-available/proxy_html.load /etc/apache2/mods-enabled/proxy_html.load
+ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
+
 # Set document root
-sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/drupal|' /etc/apache2/sites-enabled/000-default.conf
+sed -i 's|DocumentRoot /var/www/html$|DocumentRoot /var/www/html/drupal|' /etc/apache2/sites-enabled/000-default.conf
 
 # Set override for drupal directory
-# TODO Don't do this in main apache conf
-sed -i '$i<Directory /var/www/html/drupal>' /etc/apache2/apache2.conf
-sed -i '$i\\tOptions Indexes FollowSymLinks' /etc/apache2/apache2.conf
-sed -i '$i\\tAllowOverride All' /etc/apache2/apache2.conf
-sed -i '$i\\tRequire all granted' /etc/apache2/apache2.conf
-sed -i '$i</Directory>' /etc/apache2/apache2.conf
+# Now inserting into VirtualHost container - whikloj (2015-04-30)
+if [ $(grep -c "ProxyPass" /etc/apache2/sites-enabled/000-default.conf) -eq 0 ]; then
+
+sed -i 's#<VirtualHost \*:80>#<VirtualHost \*:8000>#' /etc/apache2/sites-enabled/000-default.conf
+
+sed -i 's/Listen 80/Listen \*:8000/' /etc/apache2/ports.conf
+
+sed -i '/Listen \*:8000/a \
+NameVirtualHost \*:8000' /etc/apache2/ports.conf 
+
+sed -i '/<\/VirtualHost>/i \
+  ServerAlias islandora-vagrant\
+  <Directory /var/www/html/drupal>\
+    Options Indexes FollowSymLinks\
+    AllowOverride All\
+    Require all granted\
+  </Directory>\
+  ProxyRequests Off\
+  ProxyPreserveHost On\
+  <Proxy \*>\
+    Order deny,allow\
+    Allow from all\
+' /etc/apache2/sites-enabled/000-default.conf
+
+sed -i '/<\/VirtualHost>/i \
+  </Proxy>\
+  ProxyPass /fedora/get http://localhost:8080/fedora/get\
+  ProxyPassReverse /fedora/get http://localhost:8080/fedora/get\
+  ProxyPass /fedora/services http://localhost:8080/fedora/services\
+  ProxyPassReverse /fedora/services http://localhost:8080/fedora/services\
+  ProxyPass /fedora/describe http://localhost:8080/fedora/describe\
+  ProxyPassReverse /fedora/describe http://localhost:8080/fedora/describe\
+  ProxyPass /fedora/risearch http://localhost:8080/fedora/risearch\
+  ProxyPassReverse /fedora/risearch http://localhost:8080/fedora/risearch\
+  ProxyPass /adore-djatoka http://localhost:8080/adore-djatoka\
+  ProxyPassReverse /adore-djatoka http://localhost:8080/adore-djatoka' /etc/apache2/sites-enabled/000-default.conf  
+fi
 
 # Torch the default index.html
 rm /var/www/html/index.html

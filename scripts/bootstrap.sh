@@ -68,3 +68,6 @@ echo "CREATE DATABASE fedora3" | mysql -uroot -pislandora
 echo "CREATE USER 'fedoraAdmin'@'localhost' IDENTIFIED BY 'fedoraAdmin'" | mysql -uroot -pislandora
 echo "GRANT ALL ON fedora3.* TO 'fedoraAdmin'@'localhost'" | mysql -uroot -pislandora
 echo "flush privileges" | mysql -uroot -pislandora
+
+# Add vagrant user to Apache user's group
+sudo usermod -a -G www-data vagrant

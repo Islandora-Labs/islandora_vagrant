@@ -18,6 +18,6 @@ if [ ! -f "$DOWNLOAD_DIR/fits-$FITS_VERSION.zip" ]; then
 fi
 
 unzip $DOWNLOAD_DIR/fits-$FITS_VERSION.zip -d $FITS_HOME
-cd $FITS_HOME/fits*
+cd $FITS_HOME/fits-$FITS_VERSION
 chmod +x fits.sh
 chmod +x fits-env.sh

@@ -54,11 +54,11 @@ git clone https://github.com/Islandora/islandora-xacml-policies.git islandora
 
 # Setup Drupal filter
 cd /tmp
-if [ ! -f "$DOWNLOAD_DIR/fcrepo-drupalauthfilter-3.7.0.jar" ]; then
-  wget -q -O "$DOWNLOAD_DIR/fcrepo-drupalauthfilter-3.7.0.jar" https://github.com/Islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-3.7.0.jar
+if [ ! -f "$DOWNLOAD_DIR/fcrepo-drupalauthfilter-3.8.0.jar" ]; then
+  wget -q -O "$DOWNLOAD_DIR/fcrepo-drupalauthfilter-3.8.0.jar" https://github.com/Islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-3.8.0.jar
 fi
-cp -v "$DOWNLOAD_DIR/fcrepo-drupalauthfilter-3.7.0.jar" /var/lib/tomcat7/webapps/fedora/WEB-INF/lib
-chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-3.7.0.jar
+cp -v "$DOWNLOAD_DIR/fcrepo-drupalauthfilter-3.8.0.jar" /var/lib/tomcat7/webapps/fedora/WEB-INF/lib
+chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedora/WEB-INF/lib/https://github.com/Islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-3.8.0.jar
 cd $FEDORA_HOME/server/config
 curl -O https://gist.githubusercontent.com/ruebot/8ef1fd7e5dfcbf6fa1ac/raw/c57b68767fb35d936271ba211c3d563c9b23e5e2/jaas.conf
 curl -O https://gist.githubusercontent.com/ruebot/21b991d02357da3e22c4/raw/05e39539dfba05869c14f74821a0f3305ab0e410/filter-drupal.xml
