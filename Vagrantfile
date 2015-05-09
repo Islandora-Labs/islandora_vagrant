@@ -41,7 +41,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/islandora_modules.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/islandora_libraries.sh", :args => shared_dir
+  config.vm.provision :shell, path: "./scripts/islandora_libraries.sh", :args => shared_dir, :privileged => false
   config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir

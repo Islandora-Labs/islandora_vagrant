@@ -8,13 +8,13 @@ fi
 
 cd /var/www/html/drupal/sites/all/modules
 
-sudo drush cc all
-sudo drush videojs-plugin
-sudo drush pdfjs-plugin
-sudo drush iabookreader-plugin
-sudo drush colorbox-plugin
-sudo drush openseadragon-plugin
-sudo drush -y en islandora_openseadragon
+sudo drush cache-clear drush
+sudo drush -v videojs-plugin
+sudo drush -v pdfjs-plugin
+sudo drush -v iabookreader-plugin
+sudo drush -v colorbox-plugin
+sudo drush -v openseadragon-plugin
+sudo drush -v -y en islandora_openseadragon
 
 sudo chown -hR www-data:www-data /var/www/html/drupal/sites/all/libraries
 sudo chmod -R 775 /var/www/html/drupal/sites/all/libraries
