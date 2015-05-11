@@ -1,8 +1,8 @@
 # Change Log
 
-## [Unreleased](https://github.com/Islandora-Labs/islandora_vagrant/tree/HEAD)
+## [1.2](https://github.com/Islandora-Labs/islandora_vagrant/tree/1.2) (2015-05-11)
 
-[Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/v1.1...HEAD)
+[Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/v1.1...1.2)
 
 **Implemented enhancements:**
 
