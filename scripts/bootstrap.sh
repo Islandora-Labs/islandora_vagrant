@@ -36,9 +36,9 @@ sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
 echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
-sudo apt-get install -y oracle-java7-installer
-sudo update-java-alternatives -s java-7-oracle
-sudo apt-get install -y oracle-java7-set-default
+sudo apt-get install -y oracle-java8-installer
+sudo update-java-alternatives -s java-8-oracle
+sudo apt-get install -y oracle-java8-set-default
 
 # Maven
 apt-get -y install maven
@@ -47,6 +47,9 @@ apt-get -y install maven
 apt-get -y install tomcat7 tomcat7-admin
 usermod -a -G tomcat7 vagrant
 sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat7/tomcat-users.xml
+
+# Set JAVA_HOME -- Java8 set-default does not seem to do this.
+sed -i 's|#JAVA_HOME=/usr/lib/jvm/openjdk-6-jdk|JAVA_HOME=/usr/lib/jvm/java-8-oracle|g' /etc/default/tomcat7
 
 # Wget and curl
 apt-get -y install wget curl
