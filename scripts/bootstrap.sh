@@ -17,6 +17,9 @@ if [ ! -d "$HOME_DIR/git" ]; then
   mkdir git
 fi
 
+# Set apt-get for noninteractive mode
+export DEBIAN_FRONTEND=noninteractive
+
 # Update
 apt-get -y update && apt-get -y upgrade
 
@@ -30,15 +33,15 @@ apt-get -y install build-essential automake libtool
 apt-get -y install git vim
 
 # Java (Oracle)
-sudo apt-get install -y software-properties-common
-sudo apt-get install -y python-software-properties
-sudo add-apt-repository -y ppa:webupd8team/java
-sudo apt-get update
-echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
-sudo apt-get install -y oracle-java8-installer
-sudo update-java-alternatives -s java-8-oracle
-sudo apt-get install -y oracle-java8-set-default
+apt-get install -y software-properties-common
+apt-get install -y python-software-properties
+add-apt-repository -y ppa:webupd8team/java
+apt-get update
+echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+apt-get install -y oracle-java8-installer
+update-java-alternatives -s java-8-oracle
+apt-get install -y oracle-java8-set-default
 
 # Maven
 apt-get -y install maven
@@ -73,4 +76,4 @@ echo "GRANT ALL ON fedora3.* TO 'fedoraAdmin'@'localhost'" | mysql -uroot -pisla
 echo "flush privileges" | mysql -uroot -pislandora
 
 # Add vagrant user to Apache user's group
-sudo usermod -a -G www-data vagrant
+usermod -a -G www-data vagrant
