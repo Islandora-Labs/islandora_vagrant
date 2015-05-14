@@ -58,3 +58,14 @@ The default VM login details are:
 - Islandora 7.x
 - PHP 5.5.9 
 - Java 7 (Oracle)
+
+## Authors
+
+* [Nick Ruest](https://github.com/ruebot)
+* [Jared Whiklo](https://github.com/whikloj)
+* [Logan Cox](https://github.com/lo5an)
+* [Kevin Clarke](https://github.com/ksclarke)
+
+## Acknowledgements
+
+This project was inspired by Ryerson University Library's [Islandora Chef](https://github.com/ryersonlibrary/islandora_chef), which was inspired by University of Toronto Libraries' [LibraryChef](https://github.com/utlib/chef-islandora). So, many thanks to [Graham Stewart](https://github.com/whitepine23), and [MJ Suhonos](http://github.com/mjsuhonos/).
