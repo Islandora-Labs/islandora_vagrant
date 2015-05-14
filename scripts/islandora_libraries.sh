@@ -18,3 +18,6 @@ sudo drush -v -y en islandora_openseadragon
 
 sudo chown -hR www-data:www-data /var/www/html/drupal/sites/all/libraries
 sudo chmod -R 775 /var/www/html/drupal/sites/all/libraries
+
+# After last drush call from root user, change cache permissions
+sudo chown -R vagrant:vagrant $HOME_DIR/.drush
