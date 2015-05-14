@@ -6,10 +6,13 @@ if [ -f "$SHARED_DIR/config" ]; then
   . $SHARED_DIR/config
 fi
 
+# Set apt-get for non-interactive mode
+export DEBIAN_FRONTEND=noninteractive
+
 # Dependencies
 apt-get install python-setuptools python-unittest2 -y --force-yes
 
 # Clone and build warctools
-cd $HOME_DIR/git
+cd /tmp
 git clone https://github.com/internetarchive/warctools.git
 cd warctools && ./setup.py build && ./setup.py install

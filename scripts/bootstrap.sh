@@ -12,12 +12,7 @@ if [ ! -d "$DOWNLOAD_DIR" ]; then
   mkdir -p $DOWNLOAD_DIR
 fi
 
-cd $HOME_DIR
-if [ ! -d "$HOME_DIR/git" ]; then
-  mkdir git
-fi
-
-# Set apt-get for noninteractive mode
+# Set apt-get for non-interactive mode
 export DEBIAN_FRONTEND=noninteractive
 
 # Update

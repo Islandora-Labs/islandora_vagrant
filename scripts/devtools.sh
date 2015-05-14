@@ -46,4 +46,7 @@ wget -q https://github.com/mayflower/PHP_CodeBrowser/releases/download/1.1.1/php
 mv phpcb-1.1.1.phar /usr/local/bin/phpcb
 chmod +x /usr/local/bin/phpcb
 
+# Set apt-get for non-interactive mode
+export DEBIAN_FRONTEND=noninteractive
+
 apt-get install -y doxygen
