@@ -7,13 +7,12 @@ if [ -f "$SHARED_DIR/config" ]; then
 fi
 
 # List of Islandora Foundation modules
-cd $HOME_DIR
-wget https://raw.githubusercontent.com/ruebot/islandora-release-manager-helper-scripts/7.x-1.5/islandora-module-list-sans-tuque.txt
+wget -q -O /tmp/islandora-module-list-sans-tuque.txt https://raw.githubusercontent.com/ruebot/islandora-release-manager-helper-scripts/7.x-1.5/islandora-module-list-sans-tuque.txt
 
 # Clone all Islandora Foundation modules
 cd /var/www/html/drupal/sites/all/modules
-cat $HOME_DIR/islandora-module-list-sans-tuque.txt | while read line; do
-  git clone https://github.com/Islandora/$line
+cat /tmp/islandora-module-list-sans-tuque.txt | while read LINE; do
+  git clone https://github.com/Islandora/$LINE
 done
 
 # Clone Tuque

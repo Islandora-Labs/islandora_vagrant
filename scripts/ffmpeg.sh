@@ -6,6 +6,9 @@ if [ -f "$SHARED_DIR/config" ]; then
   . $SHARED_DIR/config
 fi
 
+# Set apt-get for non-interactive mode
+export DEBIAN_FRONTEND=noninteractive
+
 # Setup libfaac dependency
 sed -i '/^# deb.*multiverse/ s/^# //' /etc/apt/sources.list && apt-get update && apt-get install libfaac-dev -y --force-yes
 
