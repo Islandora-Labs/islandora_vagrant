@@ -1,5 +1,11 @@
 # Sets up a developer environment
 
+# Set apt-get for non-interactive mode
+export DEBIAN_FRONTEND=noninteractive
+
+# Install doxygen and pear for installing PHP_CodeSniffer
+apt-get install -y php-pear doxygen
+
 # Create a configuration script to help get a Git environment set up
 sudo tee /usr/local/bin/git-config > /dev/null << GIT_CONFIG_EOF
 #! /bin/bash
@@ -50,8 +56,3 @@ tar -xzvf coder-8.x-2.1.tar.gz
 mv -v coder /usr/share
 chown -hR vagrant:vagrant /usr/share/coder
 ln -sv /usr/share/coder/coder_sniffer/Drupal /usr/share/php/PHP/CodeSniffer/Standards
-
-# Set apt-get for non-interactive mode
-export DEBIAN_FRONTEND=noninteractive
-
-apt-get install -y doxygen

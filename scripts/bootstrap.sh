@@ -4,8 +4,8 @@
 
 SHARED_DIR=$1
 
-if [ -f "$SHARED_DIR/config" ]; then
-  . $SHARED_DIR/config
+if [ -f "$SHARED_DIR/configs/variables" ]; then
+  . $SHARED_DIR/configs/variables
 fi
 
 if [ ! -d "$DOWNLOAD_DIR" ]; then

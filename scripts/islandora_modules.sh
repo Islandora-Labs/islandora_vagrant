@@ -2,35 +2,18 @@ echo "Installing all Islandora Foundation modules"
 
 SHARED_DIR=$1
 
-if [ -f "$SHARED_DIR/config" ]; then
-  . $SHARED_DIR/config
+if [ -f "$SHARED_DIR/configs/variables" ]; then
+  . $SHARED_DIR/configs/variables
 fi
 
-# List of Islandora Foundation modules
-wget -q -O /tmp/islandora-module-list-sans-tuque.txt https://raw.githubusercontent.com/ruebot/islandora-release-manager-helper-scripts/7.x-1.5/islandora-module-list-sans-tuque.txt
+cd /var/www/drupal/sites/all
 
-# Clone all Islandora Foundation modules
-cd /var/www/html/drupal/sites/all/modules
-cat /tmp/islandora-module-list-sans-tuque.txt | while read LINE; do
-  git clone https://github.com/Islandora/$LINE
-done
+drush make --yes --no-core --contrib-destination=. $SHARED_DIR/configs/islandora.drush.make
 
-# Clone Tuque
-cd /var/www/html/drupal/sites/all
 if [ ! -d libraries ]; then
   mkdir libraries
 fi
-cd /var/www/html/drupal/sites/all/libraries
-git clone https://github.com/Islandora/tuque
 
-# Permissions and ownership
-chown -hR www-data:www-data /var/www/html/drupal/sites/all/libraries
-chown -hR www-data:www-data /var/www/html/drupal/sites/all/modules
-chmod -R 775 /var/www/html/drupal/sites/all/libraries
-chmod -R 775 /var/www/html/drupal/sites/all/modules
-
-# Enable all Islandora foundation modules
-cd /var/www/html/drupal/sites/all/modules
 # Check for a user's .drush folder, create if it doesn't exist
 if [ ! -d "$HOME_DIR/.drush" ]; then
   mkdir "$HOME_DIR/.drush"
@@ -38,46 +21,53 @@ if [ ! -d "$HOME_DIR/.drush" ]; then
 fi
 
 # Move OpenSeadragon drush file to user's .drush folder
-if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islandora_openseadragon/islandora_openseadragon.drush.inc" ]; then
-  mv "/var/www/html/drupal/sites/all/modules/islandora_openseadragon/islandora_openseadragon.drush.inc" "$HOME_DIR/.drush"
+if [ -d "$HOME_DIR/.drush" -a -f "/var/www/drupal/sites/all/modules/islandora_openseadragon/islandora_openseadragon.drush.inc" ]; then
+  mv "/var/www/drupal/sites/all/modules/islandora_openseadragon/islandora_openseadragon.drush.inc" "$HOME_DIR/.drush"
 fi
 
 # Move video.js drush file to user's .drush folder
-if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islandora_videojs/islandora_videojs.drush.inc" ]; then
-  mv "/var/www/html/drupal/sites/all/modules/islandora_videojs/islandora_videojs.drush.inc" "$HOME_DIR/.drush"
+if [ -d "$HOME_DIR/.drush" -a -f "/var/www/drupal/sites/all/modules/islandora_videojs/islandora_videojs.drush.inc" ]; then
+  mv "/var/www/drupal/sites/all/modules/islandora_videojs/islandora_videojs.drush.inc" "$HOME_DIR/.drush"
 fi
 
 # Move pdf.js drush file to user's .drush folder
-if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" ]; then
-  mv "/var/www/html/drupal/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" "$HOME_DIR/.drush"
+if [ -d "$HOME_DIR/.drush" -a -f "/var/www/drupal/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" ]; then
+  mv "/var/www/drupal/sites/all/modules/islandora_pdfjs/islandora_pdfjs.drush.inc" "$HOME_DIR/.drush"
 fi
 
 # Move IA Bookreader drush file to user's .drush folder
-if [ -d "$HOME_DIR/.drush" -a -f "/var/www/html/drupal/sites/all/modules/islandora_internet_archive_bookreader/islandora_internet_archive_bookreader.drush.inc" ]; then
-  mv "/var/www/html/drupal/sites/all/modules/islandora_internet_archive_bookreader/islandora_internet_archive_bookreader.drush.inc" "$HOME_DIR/.drush"
+if [ -d "$HOME_DIR/.drush" -a -f "/var/www/drupal/sites/all/modules/islandora_internet_archive_bookreader/islandora_internet_archive_bookreader.drush.inc" ]; then
+  mv "/var/www/drupal/sites/all/modules/islandora_internet_archive_bookreader/islandora_internet_archive_bookreader.drush.inc" "$HOME_DIR/.drush"
 fi
 
-drush -y en php_lib islandora objective_forms
-drush -y en islandora_solr islandora_solr_metadata islandora_solr_facet_pages islandora_solr_views
-drush -y en islandora_basic_collection islandora_pdf islandora_audio islandora_book islandora_compound_object islandora_disk_image islandora_entities islandora_entities_csv_import islandora_basic_image islandora_large_image islandora_newspaper islandora_video islandora_web_archive
-drush -y en islandora_premis islandora_checksum islandora_checksum_checker
-drush -y en islandora_book_batch islandora_image_annotation islandora_pathauto islandora_pdfjs islandora_videojs islandora_jwplayer
-drush -y en xml_forms xml_form_builder xml_schema_api xml_form_elements xml_form_api jquery_update zip_importer islandora_basic_image islandora_bibliography islandora_compound_object islandora_google_scholar islandora_scholar_embargo islandora_solr_config citation_exporter doi_importer endnotexml_importer pmid_importer ris_importer
-drush -y en islandora_fits islandora_ocr islandora_oai islandora_marcxml islandora_simple_workflow islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap colorbox islandora_internet_archive_bookreader islandora_bagit islandora_batch_report 
+# Enable all Islandora foundation modules
+cd /var/www/drupal/sites/all/modules
+
+drush -y en php_lib islandora objective_forms islandora_solr islandora_solr_metadata islandora_solr_facet_pages \
+  islandora_solr_views islandora_basic_collection islandora_pdf islandora_audio islandora_book \
+  islandora_compound_object islandora_disk_image islandora_entities islandora_entities_csv_import \
+  islandora_basic_image  islandora_large_image islandora_newspaper islandora_video islandora_web_archive \
+  islandora_premis islandora_checksum islandora_checksum_checker islandora_book_batch islandora_image_annotation \
+  islandora_pathauto islandora_pdfjs islandora_videojs islandora_jwplayer xml_forms xml_form_builder xml_schema_api \
+  xml_form_elements xml_form_api jquery_update zip_importer islandora_basic_image islandora_bibliography \
+  islandora_compound_object islandora_google_scholar islandora_scholar_embargo islandora_solr_config citation_exporter \
+  doi_importer endnotexml_importer pmid_importer ris_importer islandora_fits islandora_ocr islandora_oai \
+  islandora_marcxml islandora_simple_workflow islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap colorbox \
+  islandora_internet_archive_bookreader islandora_bagit islandora_batch_report 
 
 #BagItPHP library
-cd /var/www/html/drupal/sites/all/libraries
+cd /var/www/drupal/sites/all/libraries
 git clone git://github.com/scholarslab/BagItPHP.git
 
 # Permissions and ownership
-chown -hR www-data:www-data /var/www/html/drupal/sites/all/libraries
-chown -hR www-data:www-data /var/www/html/drupal/sites/all/modules
-chmod -R 775 /var/www/html/drupal/sites/all/libraries
-chmod -R 775 /var/www/html/drupal/sites/all/modules
+chown -hR www-data:www-data /var/www/drupal/sites/all/libraries
+chown -hR www-data:www-data /var/www/drupal/sites/all/modules
+chmod -R 775 /var/www/drupal/sites/all/libraries
+chmod -R 775 /var/www/drupal/sites/all/modules
+
+cd /var/www/drupal/sites/all/modules
 
 # Set variables for Islandora modules
-
-cd /var/www/html/drupal/sites/all/modules
 drush eval "variable_set('islandora_audio_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
 drush eval "variable_set('islandora_fits_executable_path', '/usr/local/fits/fits-0.8.4/fits.sh')"
 drush eval "variable_set('islandora_lame_url', '/usr/bin/lame')"
