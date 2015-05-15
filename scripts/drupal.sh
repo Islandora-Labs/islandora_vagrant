@@ -2,9 +2,12 @@ echo "Installing Drupal."
 
 SHARED_DIR=$1
 
-if [ -f "$SHARED_DIR/config" ]; then
-  . $SHARED_DIR/config
+if [ -f "$SHARED_DIR/configs/variables" ]; then
+  . $SHARED_DIR/configs/variables
 fi
+
+# Set apt-get for non-interactive mode
+export DEBIAN_FRONTEND=noninteractive
 
 # Drush and drupal deps
 apt-get -y install php5-gd php5-dev php5-xsl php-soap php5-curl php5-imagick imagemagick lame libimage-exiftool-perl bibutils poppler-utils
@@ -13,7 +16,7 @@ sed -i '/; extension_dir = "ext"/ a\ extension=uploadprogress.so' /etc/php5/apac
 apt-get -y install drush
 a2enmod rewrite
 service apache2 reload
-cd /var/www/html
+cd /var/www
 
 # Download Drupal
 drush dl drupal --drupal-project-rename=drupal
@@ -34,7 +37,7 @@ ln -s /etc/apache2/mods-available/proxy_html.load /etc/apache2/mods-enabled/prox
 ln -s /etc/apache2/mods-available/headers.load /etc/apache2/mods-enabled/headers.load
 
 # Set document root
-sed -i 's|DocumentRoot /var/www/html$|DocumentRoot /var/www/html/drupal|' /etc/apache2/sites-enabled/000-default.conf
+sed -i 's|DocumentRoot /var/www/html$|DocumentRoot /var/www/drupal|' /etc/apache2/sites-enabled/000-default.conf
 
 # Set override for drupal directory
 # Now inserting into VirtualHost container - whikloj (2015-04-30)
@@ -49,7 +52,7 @@ NameVirtualHost \*:8000' /etc/apache2/ports.conf
 
 sed -i '/<\/VirtualHost>/i \
   ServerAlias islandora-vagrant\
-  <Directory /var/www/html/drupal>\
+  <Directory /var/www/drupal>\
     Options Indexes FollowSymLinks\
     AllowOverride All\
     Require all granted\
@@ -105,8 +108,8 @@ done
 service apache2 restart
 
 # sites/default/files ownership
-chown -hR www-data:www-data /var/www/html/drupal/sites/default/files
+chown -hR www-data:www-data /var/www/drupal/sites/default/files
 
 # Run cron
-cd /var/www/html/drupal/sites/all/modules
+cd /var/www/drupal/sites/all/modules
 drush cron

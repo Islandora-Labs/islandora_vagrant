@@ -3,8 +3,8 @@ echo "Preparing to install Fedora."
 # Get shared directory from VagrantFile
 SHARED_DIR=$1
 
-if [ -f "$SHARED_DIR/config" ]; then
-  . $SHARED_DIR/config
+if [ -f "$SHARED_DIR/configs/variables" ]; then
+  . $SHARED_DIR/configs/variables
 fi
 
 # Prepare $FEDORA_HOME
@@ -15,10 +15,18 @@ chown tomcat7:tomcat7 $FEDORA_HOME
 chmod g-w $FEDORA_HOME
 
 echo "Downloading Fedora"
-wget -q -O "/tmp/fcrepo-installer-$FEDORA_VERSION.jar" "http://downloads.sourceforge.net/project/fedora-commons/fedora/$FEDORA_VERSION/fcrepo-installer-$FEDORA_VERSION.jar"
+if [ ! -f "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" ]; then
+  wget -q -O "/tmp/fcrepo-installer-$FEDORA_VERSION.jar" "http://downloads.sourceforge.net/project/fedora-commons/fedora/$FEDORA_VERSION/fcrepo-installer-$FEDORA_VERSION.jar"
+else
+  cp "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" "/tmp/fcrepo-installer-$FEDORA_VERSION.jar"
+fi
 
 echo "Downloading Fedora's install.properties file"
-wget -q -O "/tmp/install.properties" "https://gist.githubusercontent.com/ruebot/d7c2298f47798adb1111/raw/e7a179dca6cd12a3c60dfa6a32ba4f522c45f52b/install.properties"
+if [ ! -f "$DOWNLOAD_DIR/install.properties" ]; then
+  wget -q -O "/tmp/install.properties" "https://gist.githubusercontent.com/ruebot/d7c2298f47798adb1111/raw/e7a179dca6cd12a3c60dfa6a32ba4f522c45f52b/install.properties"
+else
+  cp "$DOWNLOAD_DIR/install.properties" "/tmp/install.properties"
+fi
 
 echo "Installing Fedora"
 java -jar /tmp/fcrepo-installer-$FEDORA_VERSION.jar /tmp/install.properties
@@ -33,6 +41,10 @@ if [ $? -ne 0 ]; then
   if [ $? -ne 0 ]; then
     echo "Failed a second time to install from the Fedora jar... Can't proceed!"
     exit 1
+  else
+    # Copy files to the downloads directory if they were successfully used
+    cp "/tmp/install.properties" "$DOWNLOAD_DIR/install.properties"
+    cp "/tmp/fcrepo-installer-$FEDORA_VERSION.jar" "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar"
   fi
 fi
 
