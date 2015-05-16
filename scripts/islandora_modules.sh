@@ -40,22 +40,25 @@ if [ -d "$HOME_DIR/.drush" -a -f "/var/www/drupal/sites/all/modules/islandora_in
   mv "/var/www/drupal/sites/all/modules/islandora_internet_archive_bookreader/islandora_internet_archive_bookreader.drush.inc" "$HOME_DIR/.drush"
 fi
 
-# Enable all Islandora foundation modules
+# Enable all modules identified in the drush makefile
 cd /var/www/drupal/sites/all/modules
+# Extract all the module directory names from the drush makefile so we can loop through them
+MODULES=$(grep -v "^;" $SHARED_DIR/configs/islandora.drush.make | grep -oh "projects\[[A-Za-z_]*\]" | sed "s/projects\[//" | sed "s/\]/ /" | tr -d '\n')
+for MODULE in $MODULES
+do
+  # Get the module's absolute path
+  MODULEPATH=/var/www/drupal/sites/all/modules/$MODULE
+  # For each module, find all its .info files (there could be more than one)
+  INFOFILES=$(find $MODULEPATH -name '*.info' -exec basename {} \;)
+  for INFOFILE in $INFOFILES
+  do
+    # Remove the .info extension
+    INFOFILE=$(echo $INFOFILE | sed "s/\.info$//")
+    drush --yes en $INFOFILE
+  done
+done  
 
-drush -y en php_lib islandora objective_forms islandora_solr islandora_solr_metadata islandora_solr_facet_pages \
-  islandora_solr_views islandora_basic_collection islandora_pdf islandora_audio islandora_book \
-  islandora_compound_object islandora_disk_image islandora_entities islandora_entities_csv_import \
-  islandora_basic_image  islandora_large_image islandora_newspaper islandora_video islandora_web_archive \
-  islandora_premis islandora_checksum islandora_checksum_checker islandora_book_batch islandora_image_annotation \
-  islandora_pathauto islandora_pdfjs islandora_videojs islandora_jwplayer xml_forms xml_form_builder xml_schema_api \
-  xml_form_elements xml_form_api jquery_update zip_importer islandora_basic_image islandora_bibliography \
-  islandora_compound_object islandora_google_scholar islandora_scholar_embargo islandora_solr_config citation_exporter \
-  doi_importer endnotexml_importer pmid_importer ris_importer islandora_fits islandora_ocr islandora_oai \
-  islandora_marcxml islandora_simple_workflow islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap colorbox \
-  islandora_internet_archive_bookreader islandora_bagit islandora_batch_report 
-
-#BagItPHP library
+# BagItPHP library
 cd /var/www/drupal/sites/all/libraries
 git clone git://github.com/scholarslab/BagItPHP.git
 
