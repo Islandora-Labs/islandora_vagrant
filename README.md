@@ -65,6 +65,7 @@ The default VM login details are:
 * [Jared Whiklo](https://github.com/whikloj)
 * [Logan Cox](https://github.com/lo5an)
 * [Kevin Clarke](https://github.com/ksclarke)
+* [Mark Jordan](https://github.com/mjordan)
 
 ## Acknowledgements
 
