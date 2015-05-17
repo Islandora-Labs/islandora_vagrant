@@ -56,7 +56,10 @@ do
     INFOFILE=$(echo $INFOFILE | sed "s/\.info$//")
     drush --yes en $INFOFILE
   done
-done  
+done
+
+# Disable a module that was enabled in the preceding chainsaw massacre
+drush --yes dis islandora_ingest_test
 
 # BagItPHP library
 cd /var/www/drupal/sites/all/libraries
