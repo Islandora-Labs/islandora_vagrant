@@ -72,7 +72,7 @@ cd /var/www/drupal/sites/all/modules
 
 # Set variables for Islandora modules
 drush eval "variable_set('islandora_audio_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
-drush eval "variable_set('islandora_fits_executable_path', '/usr/local/fits/fits-0.8.4/fits.sh')"
+drush eval "variable_set('islandora_fits_executable_path', '/usr/local/fits/fits-0.8.5/fits.sh')"
 drush eval "variable_set('islandora_lame_url', '/usr/bin/lame')"
 drush eval "variable_set('islandora_video_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
 drush eval "variable_set('islandora_video_ffmpeg_path', '/usr/local/bin/ffmpeg')"
