@@ -18,7 +18,7 @@ sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' *xslt
 cd /tmp
 git clone https://github.com/discoverygarden/dgi_gsearch_extensions.git
 cd dgi_gsearch_extensions
-mvn package
+mvn -q package
 
 # Build GSearch
 cd /tmp

@@ -69,8 +69,8 @@ wget -q -O "/tmp/fcrepo-drupalauthfilter-$FEDORA_VERSION.jar" https://github.com
 cp -v "/tmp/fcrepo-drupalauthfilter-$FEDORA_VERSION.jar" /var/lib/tomcat7/webapps/fedora/WEB-INF/lib
 chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-$FEDORA_VERSION.jar
 cd $FEDORA_HOME/server/config
-curl -O https://gist.githubusercontent.com/ruebot/8ef1fd7e5dfcbf6fa1ac/raw/c57b68767fb35d936271ba211c3d563c9b23e5e2/jaas.conf
-curl -O https://gist.githubusercontent.com/ruebot/21b991d02357da3e22c4/raw/05e39539dfba05869c14f74821a0f3305ab0e410/filter-drupal.xml
+curl -sO https://gist.githubusercontent.com/ruebot/8ef1fd7e5dfcbf6fa1ac/raw/c57b68767fb35d936271ba211c3d563c9b23e5e2/jaas.conf
+curl -sO https://gist.githubusercontent.com/ruebot/21b991d02357da3e22c4/raw/05e39539dfba05869c14f74821a0f3305ab0e410/filter-drupal.xml
 
 # Restart Tomcat
 service tomcat7 restart

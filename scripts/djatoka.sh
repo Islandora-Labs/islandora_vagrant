@@ -41,4 +41,4 @@ sleep 30
 
 # Logging
 cd /var/lib/tomcat7/webapps/adore-djatoka/WEB-INF/classes
-curl -O https://gist.githubusercontent.com/ruebot/06abc0b8373aa2f53e4a/raw/1fd9a69d5a42bb0f10ff5fc1a57dfdd5ee28da3c/log4j.properties
+curl -sO https://gist.githubusercontent.com/ruebot/06abc0b8373aa2f53e4a/raw/1fd9a69d5a42bb0f10ff5fc1a57dfdd5ee28da3c/log4j.properties
