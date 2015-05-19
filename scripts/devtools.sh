@@ -55,4 +55,7 @@ wget -q http://ftp.drupal.org/files/projects/coder-8.x-2.1.tar.gz
 tar -xzvf coder-8.x-2.1.tar.gz
 mv -v coder /usr/share
 chown -hR vagrant:vagrant /usr/share/coder
+if [ -e /usr/share/php/PHP/CodeSniffer/Standards/Drupal ]; then
+  rm -f /usr/share/php/PHP/CodeSniffer/Standards/Drupal
+fi
 ln -sv /usr/share/coder/coder_sniffer/Drupal /usr/share/php/PHP/CodeSniffer/Standards
