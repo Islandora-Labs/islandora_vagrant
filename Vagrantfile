@@ -48,4 +48,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
+
+  if File.exist?("./scripts/custom.sh") then
+    config.vm.provision :shell, path: "./scripts/custom.sh", :args=> shared_dir
+  end
 end
