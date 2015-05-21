@@ -56,9 +56,14 @@ echo "Sleeping while Fedora starts for the first time."
 sleep 45
 
 # Setup XACML Policies
-rm -v $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
+rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-inactive-or-deleted-objects-or-datastreams-if-not-administrator.xml
+rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-policy-management-if-not-administrator.xml
+rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-unallowed-file-resolution.xml
+
 cd $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/
 git clone https://github.com/Islandora/islandora-xacml-policies.git islandora
+rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/islandora/permit-apim-to-anonymous-user.xml
+rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/islandora/permit-upload-to-anonymous-user.xml
 
 # Work around for issue #32 : Authentication error with Fedora API-M
 # This probably isn't ideal, and I'm not sure if this is just an issue of working from a local desktop to vagrant vm, or something else sinister.

@@ -16,8 +16,5 @@ sudo drush -v colorbox-plugin
 sudo drush -v openseadragon-plugin
 sudo drush -v -y en islandora_openseadragon
 
-sudo chown -hR www-data:www-data /var/www/drupal/sites/all/libraries
-sudo chmod -R 775 /var/www/drupal/sites/all/libraries
-
 # After last drush call from root user, change cache permissions
 sudo chown -R vagrant:vagrant $HOME_DIR/.drush

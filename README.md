@@ -61,7 +61,7 @@ The default VM login details are:
 
 ## Customization
 
-If you'd like to add your own customization script (to install additional modules, call other scripts, etc.), you can create a "custom.sh" file in the project's "scripts" directory. When that file is present, Vagrant will run it after all the other provisioning scripts have been run.
+If you'd like to add your own customization script (to install additional modules, call other scripts, etc.), you can create a `custom.sh` file in the project's `scripts` directory. When that file is present, Vagrant will run it after all the other provisioning scripts have been run.
 
 ## Authors
 
