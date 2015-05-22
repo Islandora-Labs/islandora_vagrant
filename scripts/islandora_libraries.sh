@@ -6,7 +6,7 @@ if [ -f "$SHARED_DIR/configs/variables" ]; then
   . $SHARED_DIR/configs/variables
 fi
 
-cd /var/www/drupal/sites/all/modules
+cd $DRUPAL_HOME/sites/all/modules
 
 sudo drush cache-clear drush
 sudo drush -v videojs-plugin
