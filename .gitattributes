@@ -1,0 +1,4 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+# We need this due to https://github.com/Islandora-Labs/islandora_vagrant/issues/54.
+* text=auto
+* text eol=lf

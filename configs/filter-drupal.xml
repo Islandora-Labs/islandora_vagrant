@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Place this file in $FEDORA_HOME/server/config
+
+    Drupal connection info for the FilterDrupal servlet filter.  
+    For multisite drupal installs you can include multiple connection elements.  
+    We will query all the databases and assume any user in any drupal db with 
+    the same username and password are the same user.  
+
+    We will gather all roles for that user from all databases.  This is a 
+    potential security risk if a user in one drupal database has the same 
+    username and password as another user in a seperate drupal database.  
+    We are also assuming all drupal dbs to be mysql. -->
+<FilterDrupal_Connection>
+    <!-- The values to be inserted below can be found in your drupal site's
+         settings.php file at the line:
+
+         $db_url = 'mysqli://root:root@localhost/fedora3';
+
+         Note that 3306 is the default mysql port.
+      -->
+    <connection server="localhost" port="3306" dbname="drupal7" user="root" password="islandora">
+      <sql>
+        <!--Different sql statement for each connection.  This is for drupal
+             multisites that are setup using one database with table prefixes.
+             We don't do this but some people might.-->
+        SELECT DISTINCT u.uid AS userid, u.name AS Name, u.pass AS Pass,r.name AS Role FROM (users u LEFT JOIN users_roles ON u.uid=users_roles.uid) LEFT JOIN role r ON r.rid=users_roles.rid WHERE u.name=? AND u.pass=?;
+      </sql>
+    </connection>
+</FilterDrupal_Connection>

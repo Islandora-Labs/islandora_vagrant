@@ -4,18 +4,16 @@
 
 SHARED_DIR=$1
 
-if [ -f "$SHARED_DIR/config" ]; then
-  . $SHARED_DIR/config
+if [ -f "$SHARED_DIR/configs/variables" ]; then
+  . $SHARED_DIR/configs/variables
 fi
 
 if [ ! -d "$DOWNLOAD_DIR" ]; then
   mkdir -p $DOWNLOAD_DIR
 fi
 
-cd $HOME_DIR
-if [ ! -d "$HOME_DIR/git" ]; then
-  mkdir git
-fi
+# Set apt-get for non-interactive mode
+export DEBIAN_FRONTEND=noninteractive
 
 # Update
 apt-get -y update && apt-get -y upgrade
@@ -30,15 +28,15 @@ apt-get -y install build-essential automake libtool
 apt-get -y install git vim
 
 # Java (Oracle)
-sudo apt-get install -y software-properties-common
-sudo apt-get install -y python-software-properties
-sudo add-apt-repository -y ppa:webupd8team/java
-sudo apt-get update
-echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
-sudo apt-get install -y oracle-java7-installer
-sudo update-java-alternatives -s java-7-oracle
-sudo apt-get install -y oracle-java7-set-default
+apt-get install -y software-properties-common
+apt-get install -y python-software-properties
+add-apt-repository -y ppa:webupd8team/java
+apt-get update
+echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+apt-get install -y oracle-java8-installer
+update-java-alternatives -s java-8-oracle
+apt-get install -y oracle-java8-set-default
 
 # Maven
 apt-get -y install maven
@@ -48,8 +46,16 @@ apt-get -y install tomcat7 tomcat7-admin
 usermod -a -G tomcat7 vagrant
 sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat7/tomcat-users.xml
 
+# Set JAVA_HOME -- Java8 set-default does not seem to do this.
+sed -i 's|#JAVA_HOME=/usr/lib/jvm/openjdk-6-jdk|JAVA_HOME=/usr/lib/jvm/java-8-oracle|g' /etc/default/tomcat7
+
 # Wget and curl
 apt-get -y install wget curl
+
+# Bug fix for Ubuntu 14.04 with zsh 5.0.2 -- https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/1242108
+export MAN_FILES=$(wget -qO- "http://sourceforge.net/projects/zsh/files/zsh/5.0.2/zsh-5.0.2.tar.gz/download" \
+  | tar xvz -C /usr/share/man/man1/ --wildcards "zsh-5.0.2/Doc/*.1" --strip-components=2)
+for MAN_FILE in $MAN_FILES; do gzip /usr/share/man/man1/${MAN_FILE##*/}; done
 
 # More helpful packages
 apt-get -y install htop tree zsh #fish
@@ -69,5 +75,8 @@ echo "CREATE USER 'fedoraAdmin'@'localhost' IDENTIFIED BY 'fedoraAdmin'" | mysql
 echo "GRANT ALL ON fedora3.* TO 'fedoraAdmin'@'localhost'" | mysql -uroot -pislandora
 echo "flush privileges" | mysql -uroot -pislandora
 
-# Add vagrant user to Apache user's group
-sudo usermod -a -G www-data vagrant
+# Add web group, and put some users in it
+groupadd web
+usermod -a -G web www-data
+usermod -a -G web vagrant
+usermod -a -G web tomcat7

@@ -48,7 +48,7 @@ The default VM login details are:
 ## Environment
 
 - Ubuntu 14.04
-- Drupal 7.34
+- Drupal 7.37
 - MySQL 5.5.41
 - Apache 2.26
 - Tomcat 7.0.52
@@ -57,4 +57,20 @@ The default VM login details are:
 - GSearch HEAD
 - Islandora 7.x
 - PHP 5.5.9 
-- Java 7 (Oracle)
+- Java 8 (Oracle)
+
+## Customization
+
+If you'd like to add your own customization script (to install additional modules, call other scripts, etc.), you can create a `custom.sh` file in the project's `scripts` directory. When that file is present, Vagrant will run it after all the other provisioning scripts have been run.
+
+## Authors
+
+* [Nick Ruest](https://github.com/ruebot)
+* [Jared Whiklo](https://github.com/whikloj)
+* [Logan Cox](https://github.com/lo5an)
+* [Kevin Clarke](https://github.com/ksclarke)
+* [Mark Jordan](https://github.com/mjordan)
+
+## Acknowledgements
+
+This project was inspired by Ryerson University Library's [Islandora Chef](https://github.com/ryersonlibrary/islandora_chef), which was inspired by University of Toronto Libraries' [LibraryChef](https://github.com/utlib/chef-islandora). So, many thanks to [Graham Stewart](https://github.com/whitepine23), and [MJ Suhonos](http://github.com/mjsuhonos/).
