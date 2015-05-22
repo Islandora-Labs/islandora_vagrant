@@ -1,5 +1,61 @@
 # Change Log
 
+## [1.3](https://github.com/Islandora-Labs/islandora_vagrant/tree/1.3) (2015-05-22)
+
+[Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/1.2...1.3)
+
+**Implemented enhancements:**
+
+- Move wget/curl calls to gists to config directory [\#57](https://github.com/Islandora-Labs/islandora_vagrant/issues/57)
+
+- vagrant up dies when installing FITS [\#54](https://github.com/Islandora-Labs/islandora_vagrant/issues/54)
+
+- Add Drupal sniffer files for phpcs [\#43](https://github.com/Islandora-Labs/islandora_vagrant/issues/43)
+
+- Update to Java 8 [\#39](https://github.com/Islandora-Labs/islandora_vagrant/issues/39)
+
+- Switching to drush make for installing Drupal modules and libraries [\#22](https://github.com/Islandora-Labs/islandora_vagrant/issues/22)
+
+**Fixed bugs:**
+
+- vagrant up dies when installing FITS [\#54](https://github.com/Islandora-Labs/islandora_vagrant/issues/54)
+
+- vagrant provision fails because symlink already exists [\#50](https://github.com/Islandora-Labs/islandora_vagrant/issues/50)
+
+**Closed issues:**
+
+- Seeing an error in drupal module enabling due to islandora\_openseadragon [\#59](https://github.com/Islandora-Labs/islandora_vagrant/issues/59)
+
+- UI for purging objects is missing [\#52](https://github.com/Islandora-Labs/islandora_vagrant/issues/52)
+
+- Enabling islandora\_ingest\_test wreaks havoc with ingest forms [\#47](https://github.com/Islandora-Labs/islandora_vagrant/issues/47)
+
+- IA book reader never renders  [\#38](https://github.com/Islandora-Labs/islandora_vagrant/issues/38)
+
+**Merged pull requests:**
+
+- Add option to run a custom script from vagrantfile [\#60](https://github.com/Islandora-Labs/islandora_vagrant/pull/60) ([ksclarke](https://github.com/ksclarke))
+
+- Fixed default value for path to FITS. [\#46](https://github.com/Islandora-Labs/islandora_vagrant/pull/46) ([mjordan](https://github.com/mjordan))
+
+- Added code to scripts/islandora\_modules.sh to parse the islandora.dru… [\#45](https://github.com/Islandora-Labs/islandora_vagrant/pull/45) ([mjordan](https://github.com/mjordan))
+
+- Update to using Drush Make [\#44](https://github.com/Islandora-Labs/islandora_vagrant/pull/44) ([ksclarke](https://github.com/ksclarke))
+
+- Fix various small housekeeping issues [\#42](https://github.com/Islandora-Labs/islandora_vagrant/pull/42) ([ksclarke](https://github.com/ksclarke))
+
+- Address Issue 54. [\#56](https://github.com/Islandora-Labs/islandora_vagrant/pull/56) ([mjordan](https://github.com/mjordan))
+
+- Address \#50. [\#51](https://github.com/Islandora-Labs/islandora_vagrant/pull/51) ([mjordan](https://github.com/mjordan))
+
+- Fix error associated with zsh man pages and silence curl and maven [\#49](https://github.com/Islandora-Labs/islandora_vagrant/pull/49) ([ksclarke](https://github.com/ksclarke))
+
+- Address \#47. [\#48](https://github.com/Islandora-Labs/islandora_vagrant/pull/48) ([mjordan](https://github.com/mjordan))
+
+- Add devtools used by ant [\#41](https://github.com/Islandora-Labs/islandora_vagrant/pull/41) ([ksclarke](https://github.com/ksclarke))
+
+- Fix stdin errors [\#40](https://github.com/Islandora-Labs/islandora_vagrant/pull/40) ([ksclarke](https://github.com/ksclarke))
+
 ## [1.2](https://github.com/Islandora-Labs/islandora_vagrant/tree/1.2) (2015-05-11)
 
 [Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/v1.1...1.2)
