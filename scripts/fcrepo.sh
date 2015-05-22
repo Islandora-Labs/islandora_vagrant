@@ -21,15 +21,8 @@ else
   cp "$DOWNLOAD_DIR/fcrepo-installer-$FEDORA_VERSION.jar" "/tmp/fcrepo-installer-$FEDORA_VERSION.jar"
 fi
 
-echo "Downloading Fedora's install.properties file"
-if [ ! -f "$DOWNLOAD_DIR/install.properties" ]; then
-  wget -q -O "/tmp/install.properties" "https://gist.githubusercontent.com/ruebot/d7c2298f47798adb1111/raw/e7a179dca6cd12a3c60dfa6a32ba4f522c45f52b/install.properties"
-else
-  cp "$DOWNLOAD_DIR/install.properties" "/tmp/install.properties"
-fi
-
 echo "Installing Fedora"
-java -jar /tmp/fcrepo-installer-$FEDORA_VERSION.jar /tmp/install.properties
+java -jar /tmp/fcrepo-installer-$FEDORA_VERSION.jar $SHARED_DIR/configs/install.properties
 
 # Check the exit code from the installation process
 if [ $? -ne 0 ]; then
@@ -59,6 +52,9 @@ sleep 45
 rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-inactive-or-deleted-objects-or-datastreams-if-not-administrator.xml
 rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-policy-management-if-not-administrator.xml
 rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-unallowed-file-resolution.xml
+rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-purge-datastream-if-active-or-inactive.xml
+rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-purge-object-if-active-or-inactive.xml
+rm $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/default/deny-reloadPolicies-if-not-localhost.xml
 
 cd $FEDORA_HOME/data/fedora-xacml-policies/repository-policies/
 git clone https://github.com/Islandora/islandora-xacml-policies.git islandora
@@ -73,9 +69,8 @@ sed -i 's|<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">0:0
 wget -q -O "/tmp/fcrepo-drupalauthfilter-$FEDORA_VERSION.jar" https://github.com/Islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-$FEDORA_VERSION.jar
 cp -v "/tmp/fcrepo-drupalauthfilter-$FEDORA_VERSION.jar" /var/lib/tomcat7/webapps/fedora/WEB-INF/lib
 chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-$FEDORA_VERSION.jar
-cd $FEDORA_HOME/server/config
-curl -sO https://gist.githubusercontent.com/ruebot/8ef1fd7e5dfcbf6fa1ac/raw/c57b68767fb35d936271ba211c3d563c9b23e5e2/jaas.conf
-curl -sO https://gist.githubusercontent.com/ruebot/21b991d02357da3e22c4/raw/05e39539dfba05869c14f74821a0f3305ab0e410/filter-drupal.xml
+cp $SHARED_DIR/configs/jaas.conf $FEDORA_HOME/server/config
+cp $SHARED_DIR/configs/filter-drupal.xml $FEDORA_HOME/server/config
 
 # Restart Tomcat
 service tomcat7 restart
