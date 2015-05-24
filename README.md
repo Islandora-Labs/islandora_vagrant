@@ -1,3 +1,5 @@
+# Islandora Vagrant [![Build Status](https://travis-ci.org/Islandora-Labs/islandora_vagrant.svg?branch=master)](https://travis-ci.org/Islandora-Labs/islandora_vagrant)
+
 ## Introduction
 
 The is a development environment virtual machine for Islandora. It should work on any operating system that supports VirtualBox and Vagrant.
