@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing FFmpeg."
 
 SHARED_DIR=$1

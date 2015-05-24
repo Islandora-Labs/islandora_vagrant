@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Preparing to install Fedora."
 
 # Get shared directory from VagrantFile

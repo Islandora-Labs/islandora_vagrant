@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Sets up a developer environment
 
 # Set apt-get for non-interactive mode

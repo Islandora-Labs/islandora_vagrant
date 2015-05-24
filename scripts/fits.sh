@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing FITS"
 
 SHARED_DIR=$1

@@ -1,6 +1,4 @@
-###
-# BASICS
-###
+#!/bin/bash
 
 SHARED_DIR=$1
 

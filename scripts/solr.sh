@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing Solr"
 
 SHARED_DIR=$1

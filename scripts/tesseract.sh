@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing Tesseract"
 
 SHARED_DIR=$1

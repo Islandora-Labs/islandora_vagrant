@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing Drupal."
 
 SHARED_DIR=$1

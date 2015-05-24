@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing GSearch"
 
 SHARED_DIR=$1

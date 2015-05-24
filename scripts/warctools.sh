@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing warctools."
 
 SHARED_DIR=$1

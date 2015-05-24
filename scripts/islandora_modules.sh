@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing all Islandora Foundation modules"
 
 SHARED_DIR=$1

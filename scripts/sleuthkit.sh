@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing Sleuthkit."
 
 SHARED_DIR=$1
