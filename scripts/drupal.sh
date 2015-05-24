@@ -3,7 +3,7 @@ echo "Installing Drupal."
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/configs/variables" ]; then
-  . $SHARED_DIR/configs/variables
+  . "$SHARED_DIR"/configs/variables
 fi
 
 # Set apt-get for non-interactive mode
@@ -44,14 +44,14 @@ sed -i "s|DocumentRoot /var/www/html$|DocumentRoot $DRUPAL_HOME|" $APACHE_CONFIG
 
 # Set override for drupal directory
 # Now inserting into VirtualHost container - whikloj (2015-04-30)
-if [ $(grep -c "ProxyPass" $APACHE_CONFIG_FILE) -eq 0 ]; then
+if [ "$(grep -c "ProxyPass" $APACHE_CONFIG_FILE)" -eq 0 ]; then
 
 sed -i 's#<VirtualHost \*:80>#<VirtualHost \*:8000>#' $APACHE_CONFIG_FILE
 
 sed -i 's/Listen 80/Listen \*:8000/' /etc/apache2/ports.conf
 
-sed -i '/Listen \*:8000/a \
-NameVirtualHost \*:8000' /etc/apache2/ports.conf 
+sed -i "/Listen \*:8000/a \
+NameVirtualHost \*:8000" /etc/apache2/ports.conf 
 
 read -d '' APACHE_CONFIG << APACHE_CONFIG_TEXT
 	ServerAlias islandora-vagrant
@@ -117,8 +117,8 @@ done
 service apache2 restart
 
 # sites/default/files ownership
-chown -hR www-data:www-data $DRUPAL_HOME/sites/default/files
+chown -hR www-data:www-data "$DRUPAL_HOME"/sites/default/files
 
 # Run cron
-cd $DRUPAL_HOME/sites/all/modules
+cd "$DRUPAL_HOME"/sites/all/modules
 drush cron

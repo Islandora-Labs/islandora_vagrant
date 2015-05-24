@@ -3,34 +3,34 @@ echo "Installing all Islandora Foundation modules"
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/configs/variables" ]; then
-  . $SHARED_DIR/configs/variables
+  . "$SHARED_DIR"/configs/variables
 fi
 
 # Permissions and ownership
-sudo chown -hR vagrant:web $DRUPAL_HOME/sites/all/libraries
-sudo chown -hR vagrant:web $DRUPAL_HOME/sites/all/modules
-sudo chmod -R 775 $DRUPAL_HOME/sites/all/libraries
-sudo chmod -R 775 $DRUPAL_HOME/sites/all/modules
+sudo chown -hR vagrant:web "$DRUPAL_HOME"/sites/all/libraries
+sudo chown -hR vagrant:web "$DRUPAL_HOME"/sites/all/modules
+sudo chmod -R 775 "$DRUPAL_HOME"/sites/all/libraries
+sudo chmod -R 775 "$DRUPAL_HOME"/sites/all/modules
 
 # Clone all Islandora Foundation modules
-cd $DRUPAL_HOME/sites/all/modules
-cat $SHARED_DIR/configs/islandora-module-list-sans-tuque.txt | while read LINE; do
-  git clone https://github.com/Islandora/$LINE
+cd "$DRUPAL_HOME"/sites/all/modules
+cat "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt | while read LINE; do
+  git clone https://github.com/Islandora/"$LINE"
 done
 
 # Clone Tuque and BagItPHP
-cd $DRUPAL_HOME/sites/all
+cd "$DRUPAL_HOME"/sites/all
 if [ ! -d libraries ]; then
   mkdir libraries
 fi
-cd $DRUPAL_HOME/sites/all/libraries
+cd "$DRUPAL_HOME"/sites/all/libraries
 git clone https://github.com/Islandora/tuque
 git clone git://github.com/scholarslab/BagItPHP.git
 
 # Check for a user's .drush folder, create if it doesn't exist
 if [ ! -d "$HOME_DIR/.drush" ]; then
   mkdir "$HOME_DIR/.drush"
-  sudo chown vagrant:vagrant $HOME_DIR/.drush
+  sudo chown vagrant:vagrant "$HOME_DIR"/.drush
 fi
 
 # Move OpenSeadragon drush file to user's .drush folder
@@ -61,7 +61,7 @@ drush -y -u 1 en islandora_book_batch islandora_image_annotation islandora_patha
 drush -y -u 1 en xml_forms xml_form_builder xml_schema_api xml_form_elements xml_form_api jquery_update zip_importer islandora_basic_image islandora_bibliography islandora_compound_object islandora_google_scholar islandora_scholar_embargo islandora_solr_config citation_exporter doi_importer endnotexml_importer pmid_importer ris_importer
 drush -y -u 1 en islandora_fits islandora_ocr islandora_oai islandora_marcxml islandora_simple_workflow islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap colorbox islandora_internet_archive_bookreader islandora_bagit islandora_batch_report 
 
-cd $DRUPAL_HOME/sites/all/modules
+cd "$DRUPAL_HOME"/sites/all/modules
 
 # Set variables for Islandora modules
 drush eval "variable_set('islandora_audio_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
