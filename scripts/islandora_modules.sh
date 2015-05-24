@@ -16,9 +16,10 @@ sudo chmod -R 775 "$DRUPAL_HOME"/sites/all/modules
 
 # Clone all Islandora Foundation modules
 cd "$DRUPAL_HOME"/sites/all/modules
-cat "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt | while read LINE; do
+while read LINE; do
   git clone https://github.com/Islandora/"$LINE"
-done
+done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt
+
 
 # Clone Tuque and BagItPHP
 cd "$DRUPAL_HOME"/sites/all

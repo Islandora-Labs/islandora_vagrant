@@ -106,15 +106,7 @@ drush dl devel imagemagick ctools jquery_update pathauto xmlsitemap views variab
 drush -y en devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
 
 # php.ini templating
-upload_max_filesize==500M
-post_max_size==500M
-max_execution_time==100
-max_input_time==100
-
-for key in upload_max_filesize post_max_size max_execution_time max_input_time
-do
-  sed -i "s/^\($key\).*/\1 $(eval echo \${$key})/" /etc/php5/apache2/php.ini
-done
+cp -v "$SHARED_DIR"/configs/php.ini /etc/php5/apache2/php.ini
 
 service apache2 restart
 
