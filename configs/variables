@@ -1,4 +1,9 @@
-#!/bin/bash
+
+# VM_ variables used by Vagrantfile to configure VM build
+#
+
+VM_FORWARDPORTS="TRUE" # Default is TRUE
+VM_USEMAKE="FALSE"     # Default is FALSE
 
 HOME_DIR="/home/vagrant"
 
