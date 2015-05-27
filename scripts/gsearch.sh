@@ -1,9 +1,11 @@
+#!/bin/bash
+
 echo "Installing GSearch"
 
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/configs/variables" ]; then
-  . $SHARED_DIR/configs/variables
+  . "$SHARED_DIR"/configs/variables
 fi
 
 # Dependencies
@@ -12,7 +14,7 @@ git clone https://github.com/discoverygarden/basic-solr-config.git
 cd basic-solr-config
 git checkout 4.x
 cd islandora_transforms
-sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' *xslt
+sed -i 's#/usr/local/fedora/tomcat#/var/lib/tomcat7#g' ./*xslt
 
 # dgi_gsearch_extensions
 cd /tmp
