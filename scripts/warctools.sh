@@ -1,9 +1,11 @@
+#!/bin/bash
+
 echo "Installing warctools."
 
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/configs/variables" ]; then
-  . $SHARED_DIR/configs/variables
+  . "$SHARED_DIR"/configs/variables
 fi
 
 # Set apt-get for non-interactive mode

@@ -1,15 +1,13 @@
-###
-# BASICS
-###
+#!/bin/bash
 
 SHARED_DIR=$1
 
 if [ -f "$SHARED_DIR/configs/variables" ]; then
-  . $SHARED_DIR/configs/variables
+  . "$SHARED_DIR"/configs/variables
 fi
 
 if [ ! -d "$DOWNLOAD_DIR" ]; then
-  mkdir -p $DOWNLOAD_DIR
+  mkdir -p "$DOWNLOAD_DIR"
 fi
 
 # Set apt-get for non-interactive mode
@@ -38,6 +36,11 @@ apt-get install -y oracle-java8-installer
 update-java-alternatives -s java-8-oracle
 apt-get install -y oracle-java8-set-default
 
+# Set JAVA_HOME variable both now and for when the system restarts
+export JAVA_HOME
+JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment
+
 # Maven
 apt-get -y install maven
 
@@ -46,16 +49,17 @@ apt-get -y install tomcat7 tomcat7-admin
 usermod -a -G tomcat7 vagrant
 sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat7/tomcat-users.xml
 
-# Set JAVA_HOME -- Java8 set-default does not seem to do this.
-sed -i 's|#JAVA_HOME=/usr/lib/jvm/openjdk-6-jdk|JAVA_HOME=/usr/lib/jvm/java-8-oracle|g' /etc/default/tomcat7
+# We still need this for the rest of the times Tomcat is run in the other build scripts
+sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat7
 
 # Wget and curl
 apt-get -y install wget curl
 
 # Bug fix for Ubuntu 14.04 with zsh 5.0.2 -- https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/1242108
-export MAN_FILES=$(wget -qO- "http://sourceforge.net/projects/zsh/files/zsh/5.0.2/zsh-5.0.2.tar.gz/download" \
+export MAN_FILES
+MAN_FILES=$(wget -qO- "http://sourceforge.net/projects/zsh/files/zsh/5.0.2/zsh-5.0.2.tar.gz/download" \
   | tar xvz -C /usr/share/man/man1/ --wildcards "zsh-5.0.2/Doc/*.1" --strip-components=2)
-for MAN_FILE in $MAN_FILES; do gzip /usr/share/man/man1/${MAN_FILE##*/}; done
+for MAN_FILE in $MAN_FILES; do gzip /usr/share/man/man1/"${MAN_FILE##*/}"; done
 
 # More helpful packages
 apt-get -y install htop tree zsh #fish
