@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 HOME_DIR="/home/vagrant"
 
@@ -18,4 +18,7 @@ FITS_VERSION=0.8.5
 SOLR_HOME="/usr/local/solr"
 SOLR_VERSION=4.2.0
 
-DRUPAL_LIBRARIES="/var/www/drupal/sites/all/libraries"
+DRUPAL_HOME="/var/www/drupal"
+
+ISLANDORA_MAKEFILE="/vagrant/configs/islandora-HEAD.make"
+DRUPAL_MAKEFILE="/vagrant/configs/drupal.make"
