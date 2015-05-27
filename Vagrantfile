@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
 
 
-  if ENV['DRUSHMAKE'] 
+  if ENV['IV_DRUSHMAKE'] 
     # install islandora modules and dependencies from makefile
     config.vm.provision :shell, path: "./scripts/islandora_make.sh", :args => shared_dir 
   else
