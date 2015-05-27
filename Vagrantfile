@@ -49,7 +49,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
 #  ## install islandora modules and dependencies from makefile
 #  config.vm.provision :shell, path: "./scripts/islandora_make.sh", :args => shared_dir 
-#  config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
+
+  config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
 
   config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
