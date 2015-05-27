@@ -78,7 +78,7 @@ drush eval "variable_set('islandora_newspaper_page_viewers', array('name' => arr
 drush eval "variable_set('islandora_pdf_create_fulltext', 1)"
 drush eval "variable_set('islandora_checksum_enable_checksum', TRUE)"
 drush eval "variable_set('islandora_ocr_tesseract', '/usr/bin/tesseract')"
-drush eval "variable_set('islandora_ocr_tesseract_enabled_languages', array('English', 'French')"
+drush eval "variable_set('islandora_ocr_tesseract_enabled_languages', array('English', 'French'))"
 drush eval "variable_set('islandora_batch_java', '/usr/bin/java')"
 drush eval "variable_set('image_toolkit', 'imagemagick')"
 drush eval "variable_set('imagemagick_convert', '/usr/bin/convert')"
