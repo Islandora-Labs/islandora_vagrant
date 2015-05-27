@@ -1,11 +1,9 @@
 
-
-
 # VM_ variables used by Vagrantfile to configure VM build
-
-VM_FORWARDPORTS="TRUE" # Default is TRUE
+VM_FORWARDPORTS="FALSE" # Default is TRUE
 VM_USEMAKE="FALSE"     # Default is FALSE
 
+export VM_FORWARDPORTS VM_USEMAKE
 
 
 # Additional variables used by various bash provisioners
