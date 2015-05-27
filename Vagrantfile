@@ -34,28 +34,31 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   shared_dir = "/vagrant"
 
   config.vm.provision :shell, inline: "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile", :privileged =>false
-  config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/devtools.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/fits.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/bootstrap.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/devtools.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/fits.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/fcrepo.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/djatoka.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
 
-  ## install islandora modules and dependencies 
-  config.vm.provision :shell, path: "./scripts/islandora_modules.sh", :args => shared_dir, :privileged => false
-  config.vm.provision :shell, path: "./scripts/islandora_libraries.sh", :args => shared_dir, :privileged => false
-  
-#  ## install islandora modules and dependencies from makefile
-#  config.vm.provision :shell, path: "./scripts/islandora_make.sh", :args => shared_dir 
 
-  config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
+  if ENV['DRUSHMAKE'] 
+    # install islandora modules and dependencies from makefile
+    config.vm.provision :shell, path: "./scripts/islandora_make.sh", :args => shared_dir 
+  else
+    ## install islandora modules and dependencies 
+    config.vm.provision :shell, path: "./scripts/islandora_modules.sh", :args => shared_dir, :privileged => false
+    config.vm.provision :shell, path: "./scripts/islandora_libraries.sh", :args => shared_dir, :privileged => false
+  end
 
-  config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
+
+  # config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir
+  # config.vm.provision :shell, path: "./scripts/sleuthkit.sh", :args => shared_dir
 
   if File.exist?("./scripts/custom.sh") then
     config.vm.provision :shell, path: "./scripts/custom.sh", :args => shared_dir
