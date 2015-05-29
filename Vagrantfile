@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty64"
 
-  if ENV['VM_FORWARDPORTS'] != 'FALSE'
+  if ENV['IVM_FORWARDPORTS'] != 'FALSE'
     config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
     config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
     config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
@@ -47,7 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
 
 
-  if ENV['VM_USEMAKE'] == 'TRUE'
+  if ENV['IVM_USEMAKE'] == 'TRUE'
     # install islandora modules and dependencies from makefile
     config.vm.provision :shell, path: "./scripts/islandora_make.sh", :args => shared_dir 
   else
