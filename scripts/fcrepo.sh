@@ -65,7 +65,7 @@ rm "$FEDORA_HOME"/data/fedora-xacml-policies/repository-policies/islandora/permi
 
 # Work around for issue #32 : Authentication error with Fedora API-M
 # This probably isn't ideal, and I'm not sure if this is just an issue of working from a local desktop to vagrant vm, or something else sinister.
-sed -i 's|<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">0:0:0:0:0:0:0:1%.+</AttributeValue>|<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}</AttributeValue>|'  /usr/local/fedora/data/fedora-xacml-policies/repository-policies/default/deny-apim-if-not-localhost.xml
+cp "$SHARED_DIR"/configs/deny-apim-if-not-localhost.xml "$FEDORA_HOME"/data/fedora-xacml-policies/repository-policies/default/deny-apim-if-not-localhost.xml
 
 # Setup Drupal filter
 wget -q -O "/tmp/fcrepo-drupalauthfilter-$FEDORA_VERSION.jar" https://github.com/Islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-"$FEDORA_VERSION".jar
