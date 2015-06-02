@@ -1,7 +1,7 @@
 
 # IVM_ variables used by Vagrantfile to configure VM build
 IVM_FORWARDPORTS="FALSE" # Default is TRUE
-IVM_USEMAKE="FALSE"     # Default is FALSE
+IVM_USEMAKE="TRUE"     # Default is FALSE
 
 export IVM_FORWARDPORTS VM_USEMAKE
 
