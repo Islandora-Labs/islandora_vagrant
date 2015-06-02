@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installing Islandora Foundation modules and dependencies"
+echo "Installing Islandora Foundation modules and dependencies via makefile"
 
 SHARED_DIR=$1
 
