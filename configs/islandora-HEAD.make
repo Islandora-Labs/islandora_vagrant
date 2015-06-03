@@ -79,11 +79,6 @@ libraries[tuque][download][type] = "git"
 libraries[tuque][download][branch] = "1.x"
 libraries[tuque][download][url] = "http://github.com/Islandora/tuque.git"
 
-libraries[colorbox][download][type] = "file"
-libraries[colorbox][download][url] = "https://github.com/jackmoore/colorbox/archive/1.x.zip"
-libraries[colorbox][directory_name] = "colorbox"
-libraries[colorbox][type] = "library"
-
 libraries[openseadragon][download][type] = "file"
 libraries[openseadragon][download][url] = "http://openseadragon.github.io/releases/openseadragon-bin-0.9.129.zip"
 libraries[openseadragon][directory_name] = "openseadragon"

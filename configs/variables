@@ -1,13 +1,3 @@
-
-# IVM_ variables used by Vagrantfile to configure VM build
-IVM_FORWARDPORTS="FALSE" # Default is TRUE
-IVM_USEMAKE="TRUE"     # Default is FALSE
-
-export IVM_FORWARDPORTS VM_USEMAKE
-
-
-# Additional variables used by various bash provisioners
-
 HOME_DIR="/home/vagrant"
 
 # Shared comes from shell provisioner in VagrantFile
