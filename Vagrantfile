@@ -50,13 +50,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if ENV['IVM_USEMAKE'] == 'TRUE'
     # install islandora modules and dependencies from makefile
     config.vm.provision :shell, path: "./scripts/islandora_make.sh", :args => shared_dir 
+    config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
   else
     ## install islandora modules and dependencies 
     config.vm.provision :shell, path: "./scripts/islandora_modules.sh", :args => shared_dir, :privileged => false
+    config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
     config.vm.provision :shell, path: "./scripts/islandora_libraries.sh", :args => shared_dir, :privileged => false
   end
 
-  config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
+
 
   config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir

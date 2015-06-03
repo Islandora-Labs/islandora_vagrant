@@ -9,8 +9,7 @@ if [ -f "$SHARED_DIR"/configs/variables ]; then
 fi
 
 
-# Enable all Islandora foundation modules
-cd "$DRUPAL_HOME"/sites/all/modules
+cd "$DRUPAL_HOME"/sites/all/libraries
 
 drush -y -u 1 en php_lib islandora objective_forms
 drush -y -u 1 en islandora_solr islandora_solr_metadata islandora_solr_facet_pages islandora_solr_views
@@ -20,11 +19,12 @@ drush -y -u 1 en islandora_book_batch islandora_image_annotation islandora_patha
 drush -y -u 1 en xml_forms xml_form_builder xml_schema_api xml_form_elements xml_form_api jquery_update zip_importer islandora_basic_image islandora_bibliography islandora_compound_object islandora_google_scholar islandora_scholar_embargo islandora_solr_config citation_exporter doi_importer endnotexml_importer pmid_importer ris_importer
 drush -y -u 1 en islandora_fits islandora_ocr islandora_oai islandora_marcxml islandora_simple_workflow islandora_xacml_api islandora_xacml_editor islandora_xmlsitemap colorbox islandora_internet_archive_bookreader islandora_bagit islandora_batch_report 
 
-
-
 # Set variables for Islandora modules
+
+cd "$DRUPAL_HOME"/sites/all/modules
+
 drush eval "variable_set('islandora_audio_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
-drush eval "variable_set('islandora_fits_executable_path', '/usr/local/fits/fits-0.8.4/fits.sh')"
+drush eval "variable_set('islandora_fits_executable_path', '$FITS_HOME/fits-$FITS_VERSION/fits.sh')"
 drush eval "variable_set('islandora_lame_url', '/usr/bin/lame')"
 drush eval "variable_set('islandora_video_viewers', array('name' => array('none' => 'none', 'islandora_videojs' => 'islandora_videojs'), 'default' => 'islandora_videojs'))"
 drush eval "variable_set('islandora_video_ffmpeg_path', '/usr/local/bin/ffmpeg')"
