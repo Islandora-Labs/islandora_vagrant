@@ -105,6 +105,9 @@ cd sites/all/modules
 drush dl devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
 drush -y en devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
 
+drush dl coder-7.x-2.5
+drush -y en coder
+
 # php.ini templating
 cp -v "$SHARED_DIR"/configs/php.ini /etc/php5/apache2/php.ini
 
