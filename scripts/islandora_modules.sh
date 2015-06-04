@@ -9,10 +9,10 @@ if [ -f "$SHARED_DIR/configs/variables" ]; then
 fi
 
 # Permissions and ownership
-sudo chown -hR vagrant:web "$DRUPAL_HOME"/sites/all/libraries
-sudo chown -hR vagrant:web "$DRUPAL_HOME"/sites/all/modules
-sudo chmod -R 775 "$DRUPAL_HOME"/sites/all/libraries
-sudo chmod -R 775 "$DRUPAL_HOME"/sites/all/modules
+sudo chown -hR vagrant:www-data "$DRUPAL_HOME"/sites/all/libraries
+sudo chown -hR vagrant:www-data "$DRUPAL_HOME"/sites/all/modules
+sudo chmod -R 755 "$DRUPAL_HOME"/sites/all/libraries
+sudo chmod -R 755 "$DRUPAL_HOME"/sites/all/modules
 
 # Clone all Islandora Foundation modules
 cd "$DRUPAL_HOME"/sites/all/modules
