@@ -41,11 +41,13 @@ GSearch:
   - username: fgsAdmin
   - password: fgsAdmin
 
-You can connect to the machine via ssh: `ssh -p 2222 vagrant@localhost`
-
-The default VM login details are:
+ssh, scp, rsync:
   - username: vagrant
   - password: vagrant
+  - Examples
+    - `ssh -p 2222 vagrant@localhost`
+    - `scp -P 2222 somefile.txt vagrant@localhost:/destination/path`
+    - `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/tmp`
 
 ## Environment
 
