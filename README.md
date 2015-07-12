@@ -4,6 +4,8 @@
 
 The is a development environment virtual machine for Islandora. It should work on any operating system that supports VirtualBox and Vagrant.
 
+The virtual machine that is built uses 3GB of RAM. Your host machine will need to be able to support that.
+
 N.B. This virtual machine **should not** be used in production.
 
 ## Requirements
