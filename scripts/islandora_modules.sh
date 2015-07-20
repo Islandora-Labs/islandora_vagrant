@@ -22,6 +22,13 @@ while read LINE; do
   git clone https://github.com/Islandora/"$LINE"
 done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt
 
+# Set git filemode false for git
+cd "$DRUPAL_HOME"/sites/all/modules
+while read LINE; do
+  cd $LINE
+  git config core.filemode false
+  cd "$DRUPAL_HOME"/sites/all/modules
+done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt
 
 # Clone Tuque and BagItPHP
 cd "$DRUPAL_HOME"/sites/all
@@ -29,8 +36,13 @@ if [ ! -d libraries ]; then
   mkdir libraries
 fi
 cd "$DRUPAL_HOME"/sites/all/libraries
-git clone https://github.com/Islandora/tuque
+git clone https://github.com/Islandora/tuque.git
 git clone git://github.com/scholarslab/BagItPHP.git
+
+cd "$DRUPAL_HOME"/sites/all/libraries/tuque
+git config core.filemode false
+cd "$DRUPAL_HOME"/sites/all/libraries/BagItPHP
+git config core.filemode false
 
 # Check for a user's .drush folder, create if it doesn't exist
 if [ ! -d "$HOME_DIR/.drush" ]; then
