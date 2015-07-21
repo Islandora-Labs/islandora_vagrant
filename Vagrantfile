@@ -14,10 +14,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
-  config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
-  config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
+  if ENV['IVM_FORWARDPORTS'] != 'FALSE'
+    config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
+    config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
+    config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
+  end
 
+  
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", '3000']
     vb.customize ["modifyvm", :id, "--cpus", "2"]   
@@ -42,8 +45,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "./scripts/solr.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/gsearch.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/drupal.sh", :args => shared_dir
-  config.vm.provision :shell, path: "./scripts/islandora_modules.sh", :args => shared_dir, :privileged => false
-  config.vm.provision :shell, path: "./scripts/islandora_libraries.sh", :args => shared_dir, :privileged => false
+
+
+  if ENV['IVM_USEMAKE'] == 'TRUE'
+    # install islandora modules and dependencies from makefile
+    config.vm.provision :shell, path: "./scripts/islandora_make.sh", :args => shared_dir 
+    config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
+  else
+    ## install islandora modules and dependencies 
+    config.vm.provision :shell, path: "./scripts/islandora_modules.sh", :args => shared_dir, :privileged => false
+    config.vm.provision :shell, path: "./scripts/islandora_enable.sh", :args => shared_dir
+    config.vm.provision :shell, path: "./scripts/islandora_libraries.sh", :args => shared_dir, :privileged => false
+  end
+
+
+
   config.vm.provision :shell, path: "./scripts/tesseract.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/ffmpeg.sh", :args => shared_dir
   config.vm.provision :shell, path: "./scripts/warctools.sh", :args => shared_dir

@@ -18,3 +18,6 @@ SOLR_HOME="/usr/local/solr"
 SOLR_VERSION=4.2.0
 
 DRUPAL_HOME="/var/www/drupal"
+
+ISLANDORA_MAKEFILE="/vagrant/configs/islandora-HEAD.make"
+DRUPAL_MAKEFILE="/vagrant/configs/drupal.make"
