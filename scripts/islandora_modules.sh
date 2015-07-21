@@ -25,7 +25,7 @@ done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt
 # Set git filemode false for git
 cd "$DRUPAL_HOME"/sites/all/modules
 while read LINE; do
-  cd $LINE
+  cd "$LINE"
   git config core.filemode false
   cd "$DRUPAL_HOME"/sites/all/modules
 done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt
