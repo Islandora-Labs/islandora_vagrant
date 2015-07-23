@@ -47,7 +47,6 @@ apt-get -y install maven
 # Tomcat
 apt-get -y install tomcat7 tomcat7-admin
 usermod -a -G tomcat7 vagrant
-sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat7/tomcat-users.xml
 
 # We still need this for the rest of the times Tomcat is run in the other build scripts
 sed -i "s|#JAVA_HOME=/usr/lib/jvm/openjdk-[0-9]\+-jdk|JAVA_HOME=$JAVA_HOME|g" /etc/default/tomcat7
