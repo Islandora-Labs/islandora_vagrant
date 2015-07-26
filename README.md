@@ -59,7 +59,7 @@ ssh, scp, rsync:
 - Apache 2.26
 - Tomcat 7.0.52
 - Solr 4.2.0
-- Fedora 3.8.0
+- Fedora 3.8.1
 - GSearch HEAD
 - Islandora 7.x
 - PHP 5.5.9 
