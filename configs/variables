@@ -7,7 +7,6 @@ DOWNLOAD_DIR="$SHARED_DIR/downloads"
 
 DJATOKA_HOME="/usr/local/djatoka"
 
-FEDORA_VERSION=3.8.0
 FEDORA_HOME="/usr/local/fedora"
 
 FFMPEG_VERSION=1.1.4

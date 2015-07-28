@@ -1,5 +1,53 @@
 # Change Log
 
+## [Unreleased](https://github.com/Islandora-Labs/islandora_vagrant/tree/HEAD)
+
+[Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/1.4...HEAD)
+
+**Closed issues:**
+
+- default/files is not writable by the www-data [\#82](https://github.com/Islandora-Labs/islandora_vagrant/issues/82)
+
+## [1.4](https://github.com/Islandora-Labs/islandora_vagrant/tree/1.4) (2015-07-23)
+
+[Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/1.3...1.4)
+
+**Implemented enhancements:**
+
+- drush dcs doesn't work [\#72](https://github.com/Islandora-Labs/islandora_vagrant/issues/72)
+
+- Clean up /var/www/drupal file/dir permissions [\#67](https://github.com/Islandora-Labs/islandora_vagrant/issues/67)
+
+- Add shebangs to each shell script [\#55](https://github.com/Islandora-Labs/islandora_vagrant/issues/55)
+
+- Make the Apache Document Root configurable [\#26](https://github.com/Islandora-Labs/islandora_vagrant/issues/26)
+
+**Fixed bugs:**
+
+- Tomcat users settings reset at the end of install/configure process [\#81](https://github.com/Islandora-Labs/islandora_vagrant/issues/81)
+
+- chmod modifies git working directories in Islandora modules [\#78](https://github.com/Islandora-Labs/islandora_vagrant/issues/78)
+
+- Editing through Fedora's Flash admin client is broken [\#66](https://github.com/Islandora-Labs/islandora_vagrant/issues/66)
+
+**Merged pull requests:**
+
+- Set JAVA\_HOME for system and prior to Tomcat install [\#64](https://github.com/Islandora-Labs/islandora_vagrant/pull/64) ([ksclarke](https://github.com/ksclarke))
+
+- Fix \#26 - Make Apache document root configurable [\#61](https://github.com/Islandora-Labs/islandora_vagrant/pull/61) ([ksclarke](https://github.com/ksclarke))
+
+- Address \#74 [\#75](https://github.com/Islandora-Labs/islandora_vagrant/pull/75) ([mjordan](https://github.com/mjordan))
+
+- Address \#72. [\#73](https://github.com/Islandora-Labs/islandora_vagrant/pull/73) ([mjordan](https://github.com/mjordan))
+
+- added options for using drush make and disabling portforwarding [\#71](https://github.com/Islandora-Labs/islandora_vagrant/pull/71) ([lo5an](https://github.com/lo5an))
+
+- added close paren to  tesseract  [\#68](https://github.com/Islandora-Labs/islandora_vagrant/pull/68) ([lo5an](https://github.com/lo5an))
+
+- Revert "Set JAVA\_HOME for system and prior to Tomcat install" [\#63](https://github.com/Islandora-Labs/islandora_vagrant/pull/63) ([ruebot](https://github.com/ruebot))
+
+- Set JAVA\_HOME for system and prior to Tomcat install [\#62](https://github.com/Islandora-Labs/islandora_vagrant/pull/62) ([ksclarke](https://github.com/ksclarke))
+
 ## [1.3](https://github.com/Islandora-Labs/islandora_vagrant/tree/1.3) (2015-05-22)
 
 [Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/1.2...1.3)
@@ -14,23 +62,17 @@
 
 - Update to Java 8 [\#39](https://github.com/Islandora-Labs/islandora_vagrant/issues/39)
 
-- Switching to drush make for installing Drupal modules and libraries [\#22](https://github.com/Islandora-Labs/islandora_vagrant/issues/22)
-
 **Fixed bugs:**
-
-- vagrant up dies when installing FITS [\#54](https://github.com/Islandora-Labs/islandora_vagrant/issues/54)
-
-- vagrant provision fails because symlink already exists [\#50](https://github.com/Islandora-Labs/islandora_vagrant/issues/50)
-
-**Closed issues:**
 
 - Seeing an error in drupal module enabling due to islandora\_openseadragon [\#59](https://github.com/Islandora-Labs/islandora_vagrant/issues/59)
 
+- vagrant up dies when installing FITS [\#54](https://github.com/Islandora-Labs/islandora_vagrant/issues/54)
+
 - UI for purging objects is missing [\#52](https://github.com/Islandora-Labs/islandora_vagrant/issues/52)
 
-- Enabling islandora\_ingest\_test wreaks havoc with ingest forms [\#47](https://github.com/Islandora-Labs/islandora_vagrant/issues/47)
+- vagrant provision fails because symlink already exists [\#50](https://github.com/Islandora-Labs/islandora_vagrant/issues/50)
 
-- IA book reader never renders  [\#38](https://github.com/Islandora-Labs/islandora_vagrant/issues/38)
+- Enabling islandora\_ingest\_test wreaks havoc with ingest forms [\#47](https://github.com/Islandora-Labs/islandora_vagrant/issues/47)
 
 **Merged pull requests:**
 

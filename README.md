@@ -4,6 +4,8 @@
 
 The is a development environment virtual machine for Islandora. It should work on any operating system that supports VirtualBox and Vagrant.
 
+The virtual machine that is built uses 3GB of RAM. Your host machine will need to be able to support that.
+
 N.B. This virtual machine **should not** be used in production.
 
 ## Requirements
@@ -41,11 +43,13 @@ GSearch:
   - username: fgsAdmin
   - password: fgsAdmin
 
-You can connect to the machine via ssh: `ssh -p 2222 vagrant@localhost`
-
-The default VM login details are:
+ssh, scp, rsync:
   - username: vagrant
   - password: vagrant
+  - Examples
+    - `ssh -p 2222 vagrant@localhost`
+    - `scp -P 2222 somefile.txt vagrant@localhost:/destination/path`
+    - `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/tmp`
 
 ## Environment
 
@@ -55,7 +59,7 @@ The default VM login details are:
 - Apache 2.26
 - Tomcat 7.0.52
 - Solr 4.2.0
-- Fedora 3.8.0
+- Fedora 3.8.1
 - GSearch HEAD
 - Islandora 7.x
 - PHP 5.5.9 

@@ -34,10 +34,10 @@ chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/adore-djatoka.war
 # Libraries
 cp "$SHARED_DIR"/configs/kdu_libs.conf /etc/ld.so.conf.d/kdu_libs.conf
 
-# Sleep for 30 while Tomcat restart
-echo "Sleeping for 45 while Tomcat stack restarts"
+# Sleep for 60 while Tomcat restart
+echo "Sleeping for 60 while Tomcat stack restarts"
 service tomcat7 restart
-sleep 45
+sleep 60
 
 # Logging
 cp "$SHARED_DIR"/configs/log4j.properties /var/lib/tomcat7/webapps/adore-djatoka/WEB-INF/classes
