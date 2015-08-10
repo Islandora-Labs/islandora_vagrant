@@ -8,7 +8,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
-  
+  config.vm.provider "virtualbox" do |v|
+    v.name = "Islandora 7.x-1.x Development VM"
+  end
   config.vm.hostname = "islandora"
 
   # Every Vagrant virtual environment requires a box to build off of.
