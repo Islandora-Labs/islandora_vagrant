@@ -102,8 +102,8 @@ fi
 cd sites/all/modules
 
 # Modules
-drush dl devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
-drush -y en devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries
+drush dl devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries datepicker date
+drush -y en devel imagemagick ctools jquery_update pathauto xmlsitemap views variable token libraries datepicker_views
 
 drush dl coder-7.x-2.5
 drush -y en coder
