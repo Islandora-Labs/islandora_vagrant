@@ -40,6 +40,7 @@ islandora_usage_stats
 islandora_videojs
 islandora_xacml_editor
 islandora_xml_forms
+islandora_form_fieldpanel
 islandora_xmlsitemap
 objective_forms
 php_lib
