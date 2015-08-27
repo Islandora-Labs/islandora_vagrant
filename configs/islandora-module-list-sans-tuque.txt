@@ -1,4 +1,5 @@
 islandora
+islandora_altmetrics
 islandora_bagit
 islandora_batch
 islandora_book_batch
