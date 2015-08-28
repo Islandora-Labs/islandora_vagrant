@@ -19,6 +19,7 @@ islandora_paged_content
 islandora_pathauto
 islandora_pdfjs
 islandora_premis
+islandora_populator
 islandora_scholar
 islandora_simple_workflow
 islandora_solr_facet_pages
