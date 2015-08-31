@@ -30,7 +30,7 @@ while read LINE; do
   cd "$DRUPAL_HOME"/sites/all/modules
 done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt
 
-# Clone Tuque and BagItPHP
+# Clone Tuque, BagItPHP, and Cite-Proc
 cd "$DRUPAL_HOME"/sites/all
 if [ ! -d libraries ]; then
   mkdir libraries
@@ -38,6 +38,7 @@ fi
 cd "$DRUPAL_HOME"/sites/all/libraries
 git clone https://github.com/Islandora/tuque.git
 git clone git://github.com/scholarslab/BagItPHP.git
+git clone https://github.com/Islandora/citeproc-php.git
 
 cd "$DRUPAL_HOME"/sites/all/libraries/tuque
 git config core.filemode false
