@@ -7,11 +7,11 @@ islandora_bookmark
 islandora_checksum
 islandora_checksum_checker
 islandora_fits
-islandora_image_annotation
 islandora_importer
 islandora_internet_archive_bookreader
 islandora_jwplayer
 islandora_marcxml
+islandora_newspaper_batch
 islandora_oai
 islandora_ocr
 islandora_openseadragon
