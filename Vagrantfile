@@ -4,6 +4,9 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+$cpus   = ENV.fetch("ISLANDORA_VAGRANT_CPUS", "2")
+$memory = ENV.fetch("ISLANDORA_VAGRANT_MEMORY", "3000")
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -21,16 +24,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", '3000']
-    vb.customize ["modifyvm", :id, "--cpus", "2"]   
+    vb.customize ["modifyvm", :id, "--memory", $memory]
+    vb.customize ["modifyvm", :id, "--cpus", $cpus]
   end
 
   config.vm.provider "vmware_fusion" do |v, override|
     override.vm.box = "phusion/ubuntu-14.04-amd64"
     override.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vmwarefusion.box"
 
-    v.vmx["memsize"] = "3000"
-    v.vmx["numvcpus"] = "2"
+    v.vmx["memsize"] = $memory
+    v.vmx["numvcpus"] = $cpus
   end
 
   shared_dir = "/vagrant"
