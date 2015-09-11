@@ -1,4 +1,5 @@
 islandora
+islandora_altmetrics
 islandora_bagit
 islandora_batch
 islandora_book_batch
@@ -6,11 +7,11 @@ islandora_bookmark
 islandora_checksum
 islandora_checksum_checker
 islandora_fits
-islandora_image_annotation
 islandora_importer
 islandora_internet_archive_bookreader
 islandora_jwplayer
 islandora_marcxml
+islandora_newspaper_batch
 islandora_oai
 islandora_ocr
 islandora_openseadragon
@@ -18,6 +19,7 @@ islandora_paged_content
 islandora_pathauto
 islandora_pdfjs
 islandora_premis
+islandora_populator
 islandora_scholar
 islandora_simple_workflow
 islandora_solr_facet_pages
@@ -36,9 +38,11 @@ islandora_solution_pack_newspaper
 islandora_solution_pack_pdf
 islandora_solution_pack_video
 islandora_solution_pack_web_archive
+islandora_usage_stats
 islandora_videojs
 islandora_xacml_editor
 islandora_xml_forms
+islandora_form_fieldpanel
 islandora_xmlsitemap
 objective_forms
 php_lib

@@ -68,9 +68,9 @@ rm "$FEDORA_HOME"/data/fedora-xacml-policies/repository-policies/islandora/permi
 cp "$SHARED_DIR"/configs/deny-apim-if-not-localhost.xml "$FEDORA_HOME"/data/fedora-xacml-policies/repository-policies/default/deny-apim-if-not-localhost.xml
 
 # Setup Drupal filter
-wget -q -O "/tmp/fcrepo-drupalauthfilter-3.8.0.jar" https://github.com/Islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-3.8.0.jar
-cp -v "/tmp/fcrepo-drupalauthfilter-3.8.0.jar" /var/lib/tomcat7/webapps/fedora/WEB-INF/lib
-chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-3.8.0.jar
+wget -q -O "/tmp/fcrepo-drupalauthfilter-3.8.1.jar" https://github.com/Islandora/islandora_drupal_filter/releases/download/v7.1.3/fcrepo-drupalauthfilter-3.8.1.jar
+cp -v "/tmp/fcrepo-drupalauthfilter-3.8.1.jar" /var/lib/tomcat7/webapps/fedora/WEB-INF/lib
+chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-3.8.1.jar
 cp "$SHARED_DIR"/configs/jaas.conf "$FEDORA_HOME"/server/config
 cp "$SHARED_DIR"/configs/filter-drupal.xml "$FEDORA_HOME"/server/config
 
