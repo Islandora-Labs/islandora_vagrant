@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "islandora"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ruebot/islandora-base"
+  config.vm.box = "islandora/islandora-base"
 
   config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
   config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
