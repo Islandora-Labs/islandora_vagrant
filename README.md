@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The is a development environment virtual machine for Islandora. It should work on any operating system that supports VirtualBox and Vagrant.
+The is a development environment virtual machine for Islandora 7.x-1.x. It should work on any operating system that supports VirtualBox and Vagrant.
 
 By default the virtual machine that is built uses 3GB of RAM. Your host machine will need to be able to support that. You can override the CPU and RAM allocation by creating `ISLANDORA_VAGRANT_CPUS` and `ISLANDORA_VAGRANT_MEMORY` environment variables and setting the values. For example, on an Ubuntu host you could add to `~/.bashrc`:
 
