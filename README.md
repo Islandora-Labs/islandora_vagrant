@@ -74,6 +74,11 @@ ssh, scp, rsync:
 
 If you'd like to add your own customization script (to install additional modules, call other scripts, etc.), you can create a `custom.sh` file in the project's `scripts` directory. When that file is present, Vagrant will run it after all the other provisioning scripts have been run.
 
+## Maintainers
+
+* [Nick Ruest](https://github.com/ruebot)
+* [Luke Taylor](https://github.com/lutaylor)
+
 ## Authors
 
 * [Nick Ruest](https://github.com/ruebot)
