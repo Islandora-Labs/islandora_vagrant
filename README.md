@@ -52,7 +52,7 @@ ssh, scp, rsync:
   - username: vagrant
   - password: vagrant
   - Examples
-    - `ssh -p 2222 vagrant@localhost`
+    - `ssh -p 2222 vagrant@localhost` or  `vagrant ssh`
     - `scp -P 2222 somefile.txt vagrant@localhost:/destination/path`
     - `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/tmp`
 
