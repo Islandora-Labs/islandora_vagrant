@@ -16,19 +16,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "Islandora 7.x-1.x Development VM"
   end
+
   config.vm.hostname = $hostname
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "islandora/islandora-base"
 
 
-if $forward.eql? "TRUE" then 
-  
-  config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
-  config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
-  config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
-
-end
+  unless  $forward.eql? "FALSE"  
+    config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
+    config.vm.network :forwarded_port, guest: 3306, host: 3306 # MySQL
+    config.vm.network :forwarded_port, guest: 8000, host: 8000 # Apache
+  end
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", $memory]

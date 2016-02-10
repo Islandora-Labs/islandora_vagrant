@@ -4,6 +4,19 @@
 
 The is a development environment virtual machine for Islandora 7.x-1.x. It should work on any operating system that supports VirtualBox and Vagrant.
 
+N.B. This virtual machine **should not** be used in production.
+
+
+## Requirements
+
+1. [VirtualBox](https://www.virtualbox.org/)
+2. [Vagrant](http://www.vagrantup.com/)
+
+
+## Variables
+
+### System Resources
+
 By default the virtual machine that is built uses 3GB of RAM. Your host machine will need to be able to support that. You can override the CPU and RAM allocation by creating `ISLANDORA_VAGRANT_CPUS` and `ISLANDORA_VAGRANT_MEMORY` environment variables and setting the values. For example, on an Ubuntu host you could add to `~/.bashrc`:
 
 ```bash
@@ -11,12 +24,17 @@ export ISLANDORA_VAGRANT_CPUS=4
 export ISLANDORA_VAGRANT_MEMORY=4096
 ```
 
-N.B. This virtual machine **should not** be used in production.
+### Hostname and Port Forwarding
 
-## Requirements
+If you use a DNS or host file management plugin with Vagrant,  you may want to set a specific hostname for the virtual machine and disable port forwarding. You can do that with the `ISLANDORA_VAGRANT_HOSTNAME` and `ISLANDORA_VAGRANT_FORWARD` variables. For example:
 
-1. [VirtualBox](https://www.virtualbox.org/)
-2. [Vagrant](http://www.vagrantup.com/)
+```bash
+export ISLANDORA_VAGRANT_HOSTNAME="islandora.vagrant.test"
+export ISLANDORA_VAGRANT_FORWARD="FALSE"
+```
+
+
+
 
 ## Use
 
