@@ -1,12 +1,29 @@
 # Change Log
 
-## [Unreleased](https://github.com/Islandora-Labs/islandora_vagrant/tree/HEAD)
-
-[Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/2.0...HEAD)
+## [islandora_vagrant-2.0.1](https://github.com/Islandora-Labs/islandora_vagrant/tree/islandora_vagrant-2.0.1) (2016-03-27)
+[Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/2.0...islandora_vagrant-2.0.1)
 
 **Implemented enhancements:**
 
+- Update bash scripts to acommodate new version of shellcheck [\#98](https://github.com/Islandora-Labs/islandora_vagrant/issues/98)
+- Update base box to pull from Islandora atlas account instead of ruebot atlas account [\#93](https://github.com/Islandora-Labs/islandora_vagrant/issues/93)
 - symlink $DRUPAL\_HOME to shared directory [\#87](https://github.com/Islandora-Labs/islandora_vagrant/issues/87)
+
+**Fixed bugs:**
+
+- Checksum function doesn't activate until save button is pressed once -- ISLANDORA-1477 [\#94](https://github.com/Islandora-Labs/islandora_vagrant/issues/94)
+
+**Closed issues:**
+
+- jwplayer library missing from vagrant image [\#103](https://github.com/Islandora-Labs/islandora_vagrant/issues/103)
+- README vagrant ssh \#documentation [\#101](https://github.com/Islandora-Labs/islandora_vagrant/issues/101)
+
+**Merged pull requests:**
+
+- 7.x-1.7 Release VM [\#100](https://github.com/Islandora-Labs/islandora_vagrant/pull/100) ([qadan](https://github.com/qadan))
+- Update README.md [\#97](https://github.com/Islandora-Labs/islandora_vagrant/pull/97) ([DonRichards](https://github.com/DonRichards))
+- adding variable to disable forwarding and to change host name [\#96](https://github.com/Islandora-Labs/islandora_vagrant/pull/96) ([lo5an](https://github.com/lo5an))
+- Disambiguate which Islandora Vagrant this is. [\#95](https://github.com/Islandora-Labs/islandora_vagrant/pull/95) ([rosiel](https://github.com/rosiel))
 
 ## [2.0](https://github.com/Islandora-Labs/islandora_vagrant/tree/2.0) (2015-10-01)
 [Full Changelog](https://github.com/Islandora-Labs/islandora_vagrant/compare/1.4...2.0)
