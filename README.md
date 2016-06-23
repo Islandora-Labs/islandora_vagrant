@@ -89,7 +89,6 @@ ssh, scp, rsync:
 
 ## Maintainers
 
-* [Nick Ruest](https://github.com/ruebot)
 * [Luke Taylor](https://github.com/lutaylor)
 * [Don Richards](https://github.com/donrichards)
 
