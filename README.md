@@ -10,8 +10,11 @@ N.B. This virtual machine **should not** be used in production.
 ## Requirements
 
 1. [VirtualBox](https://www.virtualbox.org/)
+  * Be sure to install a version of VirtualBox that [is compatible with Vagrant](https://www.vagrantup.com/docs/virtualbox/)
 2. [Vagrant](http://www.vagrantup.com)
 3. [git](https://git-scm.com/)
+
+Note that virtualization must be enabled in the host machine's BIOS settings.
 
 ## Variables
 
@@ -89,8 +92,8 @@ ssh, scp, rsync:
 
 ## Maintainers
 
-* [Nick Ruest](https://github.com/ruebot)
 * [Luke Taylor](https://github.com/lutaylor)
+* [Don Richards](https://github.com/donrichards)
 
 ## Authors
 
