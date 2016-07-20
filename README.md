@@ -77,17 +77,17 @@ ssh, scp, rsync:
 ## Environment
 
 - Ubuntu 14.04
-- Drupal 7.43
-- MySQL 5.5.47
+- Drupal 7.50
+- MySQL 5.5.49
 - Apache 2.4.7
 - Tomcat 7.0.55.0
 - Solr 4.2.0
 - Fedora 3.8.1
 - GSearch HEAD
-- PHP 5.5.9-1ubuntu4.14
+- PHP 5.5.9-1ubuntu4.17
 - Java 8 (Oracle)
 - FITS 0.10.1
-- drush 5.10.0
+- drush 6.3.0
 - jQuery 1.10.2
 
 ## Maintainers
