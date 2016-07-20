@@ -77,7 +77,7 @@ ssh, scp, rsync:
 ## Environment
 
 - Ubuntu 14.04
-- Drupal 7.50
+- Drupal 7.44
 - MySQL 5.5.49
 - Apache 2.4.7
 - Tomcat 7.0.55.0
