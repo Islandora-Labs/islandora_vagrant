@@ -54,17 +54,17 @@ MySQL:
   - username: root
   - password: islandora
 
-Tomcat Manager:
+[Tomcat Manager:](http://localhost:8080/manager)
   - username: islandora
   - password: islandora
 
-Fedora:
+[Fedora:](http://localhost:8080/fedora/) ([Fedora Admin](http://localhost:8080/fedora/admin) | [Fedora Risearch](http://localhost:8080/fedora/risearch) | [Fedora Services](http://localhost:8080/fedora/services/))
   - username: fedoraAdmin
   - password: fedoraAdmin
 
-GSearch:
-  - username: fgsAdmin
-  - password: fgsAdmin
+[GSearch:](http://localhost:8080/fedoragsearch/rest)
+  - username: fedoraAdmin
+  - password: fedoraAdmin
 
 ssh, scp, rsync:
   - username: vagrant
@@ -73,6 +73,7 @@ ssh, scp, rsync:
     - `ssh -p 2222 vagrant@localhost` or `vagrant ssh`
     - `scp -P 2222 somefile.txt vagrant@localhost:/destination/path`
     - `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/tmp`
+
 
 ## Environment
 
