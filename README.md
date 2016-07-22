@@ -44,6 +44,8 @@ export ISLANDORA_VAGRANT_FORWARD="FALSE"
 
 ## Connect
 
+Note: The supplied links apply only to this local vagrant system. They could vary in other installations. 
+
 You can connect to the machine via the browser at [http://localhost:8000](http://localhost:8000).
 
 The default Drupal login details are:
