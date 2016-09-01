@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Setup a user for Tomcat Manager
-sed -i '$i<user username="islandora" password="islandora" roles="manager-gui"/>' /etc/tomcat7/tomcat-users.xml
+sed -i '$i<role rolename="admin-gui"/>' /etc/tomcat7/tomcat-users.xml
+sed -i '$i<user username="islandora" password="islandora" roles="manager-gui,admin-gui"/>' /etc/tomcat7/tomcat-users.xml
 service tomcat7 restart
 
 # Set correct permissions on sites/default/files
