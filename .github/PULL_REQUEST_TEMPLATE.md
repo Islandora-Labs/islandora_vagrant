@@ -33,4 +33,4 @@ Example:
 * Could this change impact execution of existing code?
 
 # Interested parties
-Tag (@ mention) interested parties or, if unsure, @Islandora/7-x-1-x-committers
+Tag (@ mention) interested parties or, if unsure, @Islandora-Labs/committers
