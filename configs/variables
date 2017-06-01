@@ -13,7 +13,7 @@ FEDORA_HOME="/usr/local/fedora"
 FFMPEG_VERSION=1.1.4
 
 FITS_HOME="/usr/local/fits"
-FITS_VERSION=1.1.0
+FITS_VERSION=1.1.1
 
 SOLR_HOME="/usr/local/fedora/solr"
 SOLR_VERSION=4.10.4
