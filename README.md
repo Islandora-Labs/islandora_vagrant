@@ -26,6 +26,7 @@ By default the virtual machine that is built uses 3GB of RAM. Your host machine 
 export ISLANDORA_VAGRANT_CPUS=4
 export ISLANDORA_VAGRANT_MEMORY=4096
 ```
+The files involved will also exceed 10GB. Your host machine will need at least that much free storage.
 
 ### Hostname and Port Forwarding
 
