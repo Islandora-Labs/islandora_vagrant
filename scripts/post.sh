@@ -8,6 +8,10 @@ service tomcat7 restart
 # Set correct permissions on sites/default/files
 chmod -R 775 /var/www/drupal/sites/default/files
 
+# Update Drupal and friends to something recent
+
+drush --root=/var/www/drupal -v -y pm-update
+
 # Allow anonymous & authenticated users to view repository objects
 drush --root=/var/www/drupal role-add-perm "anonymous user" "view fedora repository objects"
 drush --root=/var/www/drupal role-add-perm "authenticated user" "view fedora repository objects"
