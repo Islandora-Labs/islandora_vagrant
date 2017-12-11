@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   config.vm.provider "virtualbox" do |v|
-    v.name = "Islandora 7.x-1.x Development VM"
+    v.name = "Islandora 7.x-1.10 VM"
   end
 
   config.vm.hostname = $hostname
@@ -22,6 +22,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "islandora/islandora-base"
 
+  # This is a RC VM, So make sure people are running the latest base box by Oct 2017
+  config.vm.box_version = "~> 1.0.5"
+  config.vm.box_check_update = true
 
   unless  $forward.eql? "FALSE"  
     config.vm.network :forwarded_port, guest: 8080, host: 8080 # Tomcat
