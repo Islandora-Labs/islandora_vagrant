@@ -12,6 +12,8 @@ N.B. This virtual machine **should not** be used in production.
 1. [VirtualBox](https://www.virtualbox.org/)
   * Be sure to install a version of VirtualBox that [is compatible with Vagrant](https://www.vagrantup.com/docs/virtualbox/)
 2. [Vagrant](http://www.vagrantup.com)
+  * Important: be sure to install Vagrant version 2.0.3 or higher
+  * If upgrading from a previus version run ```bash vagrant plugin update``` to avoid plugin issues
 3. [git](https://git-scm.com/)
 
 Note that virtualization must be enabled in the host machine's BIOS settings.
