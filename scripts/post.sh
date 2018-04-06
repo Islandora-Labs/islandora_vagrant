@@ -20,15 +20,16 @@ drush --root=/var/www/drupal cc all
 
 cat <<'EOT' >> /home/vagrant/.bashrc
 
-echo '┌--------------------------------------------------------------------------------------┐'
-echo '| Welcome to the Islandora 7.x Development box. Islandora is at http://localhost:8000. |'
-echo '|                                                                                      |'
-echo '| User: admin                                                                          |'
-echo '| Pass: islandora                                                                      |'
-echo '|                                                                                      |'
-echo '| More information available at the Islandora Vagrant github:                          |'
-echo '| https://github.com/Islandora-Labs/islandora_vagrant/                                 |'
-echo '└--------------------------------------------------------------------------------------┘'
+echo '┌----------------------------------------------------------------------┐'
+echo '| Welcome to the Islandora 7.x Development box. Islandora is at        |'
+echo '| http://localhost:8000.                                               |'
+echo '|                                                                      |'
+echo '| User: admin                                                          |'
+echo '| Pass: islandora                                                      |'
+echo '|                                                                      |'
+echo '| More information available at the Islandora Vagrant github:          |'
+echo '| https://github.com/Islandora-Labs/islandora_vagrant/                 |'
+echo '└----------------------------------------------------------------------┘'
 echo ''
 
 EOT
