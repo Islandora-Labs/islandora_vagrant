@@ -19,6 +19,12 @@ drush --root=/var/www/drupal cc all
 # Lets brand this a bit
 
 cat <<'EOT' >> /home/vagrant/.bashrc
+export DOWNLOAD_DIR="$SHARED_DIR/downloads"
+export DJATOKA_HOME="/usr/local/djatoka"
+export FEDORA_HOME="/usr/local/fedora"
+export FITS_HOME="/usr/local/fits"
+export SOLR_HOME="/usr/local/solr"
+export DRUPAL_HOME="/var/www/drupal"
 
 echo '┌----------------------------------------------------------------------┐'
 echo '| Welcome to the Islandora 7.x Development box. Islandora is at        |'
