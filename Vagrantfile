@@ -9,6 +9,7 @@ $memory = ENV.fetch("ISLANDORA_VAGRANT_MEMORY", "3000")
 $hostname = ENV.fetch("ISLANDORA_VAGRANT_HOSTNAME", "islandora")
 $forward = ENV.fetch("ISLANDORA_VAGRANT_FORWARD", "TRUE")
 
+Vagrant.require_version ">= 2.0.3"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
