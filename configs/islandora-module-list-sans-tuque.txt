@@ -1,5 +1,5 @@
 islandora
-islandora_altmetrics
+islandora_badges
 islandora_bagit
 islandora_batch
 islandora_book_batch
@@ -9,7 +9,6 @@ islandora_checksum_checker
 islandora_fits
 islandora_importer
 islandora_internet_archive_bookreader
-islandora_jwplayer
 islandora_marcxml
 islandora_newspaper_batch
 islandora_oai
