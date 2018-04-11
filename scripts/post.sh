@@ -20,6 +20,11 @@ drush --root=/var/www/drupal cc all
 
 cat <<'EOT' >> /home/vagrant/.bashrc
 
+# Adds path variables to vagrant user
+if [ -f /vagrant/configs/variables ]; then
+    . /vagrant/configs/variables
+fi
+
 echo '┌----------------------------------------------------------------------┐'
 echo '| Welcome to the Islandora 7.x Development box. Islandora is at        |'
 echo '| http://localhost:8000.                                               |'
