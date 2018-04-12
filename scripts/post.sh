@@ -16,14 +16,32 @@ drush --root=/var/www/drupal role-add-perm "anonymous user" "view fedora reposit
 drush --root=/var/www/drupal role-add-perm "authenticated user" "view fedora repository objects"
 drush --root=/var/www/drupal cc all
 
-# Lets brand this a bit
 
-cat <<'EOT' >> /home/vagrant/.bashrc
+# Config cantaloupe 
+export CANTALOUPE_RUNNING=$(curl -Is -m 10 http://127.0.0.1:8080/cantaloupe | head -n 1)
+
+if [ "$CANTALOUPE_RUNNING" -eq "HTTP/1.1 200 OK" ] && [ "$CANTALOUPE_SETUP" -eq "TRUE" ] ; then
+
+    drush --root=/var/www/drupal vset islandora_openseadragon_tilesource iiif
+    drush --root=/var/www/drupal vset islandora_openseadragon_iiif_url http://localhost:8000/iiif/2
+    drush --root=/var/www/drupal vget islandora_openseadragon_iiif_token_header
+    drush --root=/var/www/drupal vset islandora_openseadragon_iiif_token_header 1
+    drush --root=/var/www/drupal vset islandora_openseadragon_iiif_identifier [islandora_openseadragon:pid]~[islandora_openseadragon:dsid]~[islandora_openseadragon:token]
+
+    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_identifier [islandora_iareader:pid]~[islandora_iareader:dsid]~[islandora_iareader:token]
+    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_url http://localhost:8000/iiif/2
+    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_token_header 1
+    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_pagesource iiif
+fi
 
 # Adds path variables to vagrant user
 if [ -f /vagrant/configs/variables ]; then
     . /vagrant/configs/variables
 fi
+
+# Lets brand this a bit
+
+cat <<'EOT' >> /home/vagrant/.bashrc
 
 echo '┌----------------------------------------------------------------------┐'
 echo '| Welcome to the Islandora 7.x Development box. Islandora is at        |'
