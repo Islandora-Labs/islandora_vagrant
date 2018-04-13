@@ -36,6 +36,7 @@ fi
 
 # Adds path variables to vagrant user
 if [ -f /vagrant/configs/variables ]; then
+# shellcheck disable=SC1091
     . /vagrant/configs/variables
 fi
 
