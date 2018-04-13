@@ -22,16 +22,15 @@ export CANTALOUPE_RUNNING=$(curl -Is -m 10 http://127.0.0.1:8080/cantaloupe/iiif
 
 if [ "$CANTALOUPE_RUNNING" = "HTTP/1.1 200 OK" ] && [ "$CANTALOUPE_SETUP" = "TRUE" ] ; then
 
-    drush --root=/var/www/drupal vset islandora_openseadragon_tilesource iiif
-    drush --root=/var/www/drupal vset islandora_openseadragon_iiif_url http://localhost:8000/iiif/2
-    drush --root=/var/www/drupal vget islandora_openseadragon_iiif_token_header
+    drush --root=/var/www/drupal vset islandora_openseadragon_tilesource 'iiif'
+    drush --root=/var/www/drupal vset islandora_openseadragon_iiif_url 'http://localhost:8000/iiif/2'
     drush --root=/var/www/drupal vset islandora_openseadragon_iiif_token_header 1
-    drush --root=/var/www/drupal vset islandora_openseadragon_iiif_identifier [islandora_openseadragon:pid]~[islandora_openseadragon:dsid]~[islandora_openseadragon:token]
+    drush --root=/var/www/drupal vset islandora_openseadragon_iiif_identifier '[islandora_openseadragon:pid]~[islandora_openseadragon:dsid]~[islandora_openseadragon:token]'
 
-    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_identifier [islandora_iareader:pid]~[islandora_iareader:dsid]~[islandora_iareader:token]
-    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_url http://localhost:8000/iiif/2
+    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_identifier '[islandora_iareader:pid]~[islandora_iareader:dsid]~[islandora_iareader:token]'
+    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_url 'http://localhost:8000/iiif/2'
     drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_token_header 1
-    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_pagesource iiif
+    drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_pagesource 'iiif'
 fi
 
 # Adds path variables to vagrant user
