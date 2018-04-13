@@ -18,7 +18,7 @@ drush --root=/var/www/drupal cc all
 
 
 # Config cantaloupe 
-export CANTALOUPE_RUNNING=$(curl -Is -m 10 http://127.0.0.1:8080/cantaloupe | head -n 1)
+export CANTALOUPE_RUNNING=$(curl -Is -m 10 http://127.0.0.1:8080/cantaloupe/iiif/2 | head -n 1)
 
 if [ "$CANTALOUPE_RUNNING" -eq "HTTP/1.1 200 OK" ] && [ "$CANTALOUPE_SETUP" -eq "TRUE" ] ; then
 
