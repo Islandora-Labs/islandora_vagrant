@@ -20,7 +20,7 @@ drush --root=/var/www/drupal cc all
 # Config cantaloupe 
 export CANTALOUPE_RUNNING=$(curl -Is -m 10 http://127.0.0.1:8080/cantaloupe/iiif/2 | head -n 1)
 
-if [ "$CANTALOUPE_RUNNING" -eq "HTTP/1.1 200 OK" ] && [ "$CANTALOUPE_SETUP" -eq "TRUE" ] ; then
+if [ "$CANTALOUPE_RUNNING" = "HTTP/1.1 200 OK" ] && [ "$CANTALOUPE_SETUP" = "TRUE" ] ; then
 
     drush --root=/var/www/drupal vset islandora_openseadragon_tilesource iiif
     drush --root=/var/www/drupal vset islandora_openseadragon_iiif_url http://localhost:8000/iiif/2
