@@ -18,10 +18,10 @@ drush --root=/var/www/drupal cc all
 
 
 # Config cantaloupe 
-CANTALOUPE_RESPONSE=$(curl -Is -m 10 http://127.0.0.1:8080/cantaloupe/iiif/2 | head -n 1 | tr -dc '[:alnum:]')
+CANTALOUPE_RESPONSE=$(sleep 10 && curl -Is -o /dev/null -m 10 -w '%{http_code}\n' 'http://127.0.0.1:8080/cantaloupe/iiif/2' | tr -dc '[:alnum:]')
 export CANTALOUPE_RUNNING="$CANTALOUPE_RESPONSE"
 
-if [ "$CANTALOUPE_RUNNING" = "HTTP11200OK" ] && [ "$CANTALOUPE_SETUP" = "TRUE" ] ; then
+if [ "$CANTALOUPE_RUNNING" = "200" ] && [ "$CANTALOUPE_SETUP" = "TRUE" ] ; then
 
     drush --root=/var/www/drupal vset islandora_openseadragon_tilesource 'iiif'
     drush --root=/var/www/drupal vset islandora_openseadragon_iiif_url 'http://localhost:8000/iiif/2'
