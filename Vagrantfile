@@ -23,8 +23,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "islandora/islandora-base"
   
-  # This is a RC VM, So make sure people are running the latest base box by Oct 2017
-   config.vm.box_version = "~> 1.0.5"
+  # This is a RC VM, So make sure people are running the latest base box by April 2018
+  # Which will include cantaloupe IIIF Image Server
+   config.vm.box_version = "~> 1.0.6"
    config.vm.box_check_update = true
 
   unless  $forward.eql? "FALSE"  
