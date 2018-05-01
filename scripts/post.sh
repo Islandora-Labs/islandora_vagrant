@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Adds path variables to vagrant user
+if [ -f /vagrant/configs/variables ]; then
+# shellcheck disable=SC1091
+    . /vagrant/configs/variables
+fi
+
 # Setup a user for Tomcat Manager
 sed -i '$i<role rolename="admin-gui"/>' /etc/tomcat7/tomcat-users.xml
 sed -i '$i<user username="islandora" password="islandora" roles="manager-gui,admin-gui"/>' /etc/tomcat7/tomcat-users.xml
@@ -32,12 +38,6 @@ if [ "$CANTALOUPE_RUNNING" = "200" ] && [ "$CANTALOUPE_SETUP" = "TRUE" ] ; then
     drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_url 'http://localhost:8000/iiif/2'
     drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_iiif_token_header 1
     drush --root=/var/www/drupal vset islandora_internet_archive_bookreader_pagesource 'iiif'
-fi
-
-# Adds path variables to vagrant user
-if [ -f /vagrant/configs/variables ]; then
-# shellcheck disable=SC1091
-    . /vagrant/configs/variables
 fi
 
 # Lets brand this a bit
