@@ -43,10 +43,16 @@ fi
 # Lets brand this a bit
 
 cat <<'EOT' >> /home/vagrant/.bashrc
-
+echo '     __                                           '
+echo '  | /  \ |      Welcome to the         //  \\   '
+echo ' \_\\  //_/   Islandora 7.x-1.12      _\\()//_  '
+echo '  .'/()\'.    Release Candidate 1    / //  \\ \ '
+echo '   \\  //                             | \__/ |  '
+echo '              "Roll initiative!"                '
+echo '                                                '
 echo '┌----------------------------------------------------------------------┐'
-echo '| Welcome to the Islandora 7.x Development box. Islandora is at        |'
-echo '| http://localhost:8000.                                               |'
+echo '| Welcome to the Islandora 7.x-1.12 Release Candidate 1.               |'
+echo '| Islandora is at http://localhost:8000.                               |'
 echo '|                                                                      |'
 echo '| User: admin                                                          |'
 echo '| Pass: islandora                                                      |'
@@ -55,5 +61,5 @@ echo '| More information available at the Islandora Vagrant github:          |'
 echo '| https://github.com/Islandora-Labs/islandora_vagrant/                 |'
 echo '└----------------------------------------------------------------------┘'
 echo ''
-
+echo ''
 EOT
