@@ -46,7 +46,7 @@ cat <<'EOT' >> /home/vagrant/.bashrc
 echo '     __                                           '
 echo '  | /  \ |      Welcome to the         //  \\   '
 echo ' \_\\  //_/   Islandora 7.x-1.12      _\\()//_  '
-echo '  .'/()\'.    Release Candidate 1    / //  \\ \ '
+echo '   //()\\     Release Candidate 1    / //  \\ \ '
 echo '   \\  //                             | \__/ |  '
 echo '              "Roll initiative!"                '
 echo '                                                '

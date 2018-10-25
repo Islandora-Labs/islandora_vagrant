@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   config.vm.provider "virtualbox" do |v|
-    v.name = "Islandora 7.x-1.12 Release Candidate 1 VM"
+    v.name = "Islandora 7.x-1.12 Release Candidate 1.0 VM"
   end
 
   config.vm.hostname = $hostname
