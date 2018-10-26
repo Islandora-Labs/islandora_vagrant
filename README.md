@@ -94,7 +94,6 @@ ssh, scp, rsync:
 
 ## Maintainers
 
-* [Luke Taylor](https://github.com/lutaylor)
 * [Don Richards](https://github.com/donrichards)
 
 ## Authors
