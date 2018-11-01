@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   # This is a RC VM, So make sure people are running the latest base box by April 2018
   # Which will include cantaloupe IIIF Image Server
-   config.vm.box_version = "~> 1.0.6"
+   config.vm.box_version = "~> 1.0.7"
    config.vm.box_check_update = true
 
   unless  $forward.eql? "FALSE"  
