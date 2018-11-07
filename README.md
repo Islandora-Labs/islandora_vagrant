@@ -99,6 +99,7 @@ ssh, scp, rsync:
 ## Maintainers
 
 * [Don Richards](https://github.com/donrichards)
+* [Ben Rosner](https://github.com/br2490)
 
 ## Authors
 
