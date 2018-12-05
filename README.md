@@ -71,6 +71,10 @@ MySQL:
   - username: fedoraAdmin
   - password: fedoraAdmin
 
+[cantaloupe admin:](http://localhost:8080/cantaloupe/admin)
+  - username: admin
+  - password: 
+
 ssh, scp, rsync:
   - username: vagrant
   - password: vagrant
