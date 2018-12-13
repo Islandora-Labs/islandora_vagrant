@@ -11,9 +11,9 @@ N.B. This virtual machine **should not** be used in production.
 
 1. [VirtualBox](https://www.virtualbox.org/)
   * Be sure to install a version of VirtualBox that [is compatible with Vagrant](https://www.vagrantup.com/docs/virtualbox/)
-2. [Vagrant](http://www.vagrantup.com)
+2. [Vagrant](https://www.vagrantup.com/)
   * Important: be sure to install Vagrant version 2.0.3 or higher
-  * If upgrading from a previus version run ```vagrant plugin update``` to avoid plugin issues
+  * If upgrading from a previous version run ```vagrant plugin update``` to avoid plugin issues
 3. [git](https://git-scm.com/)
 
 Note that virtualization must be enabled in the host machine's BIOS settings.
@@ -32,7 +32,7 @@ The files involved will also exceed 10GB. Your host machine will need at least t
 
 ### Hostname and Port Forwarding
 
-If you use a DNS or host file management plugin with Vagrant,  you may want to set a specific hostname for the virtual machine and disable port forwarding. You can do that with the `ISLANDORA_VAGRANT_HOSTNAME` and `ISLANDORA_VAGRANT_FORWARD` variables. For example:
+If you use a DNS or host file management plugin with Vagrant, you may want to set a specific hostname for the virtual machine and disable port forwarding. You can do that with the `ISLANDORA_VAGRANT_HOSTNAME` and `ISLANDORA_VAGRANT_FORWARD` variables. For example:
 
 ```bash
 export ISLANDORA_VAGRANT_HOSTNAME="islandora.vagrant.test"
