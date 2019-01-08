@@ -73,7 +73,7 @@ MySQL:
 
 [cantaloupe admin:](http://localhost:8080/cantaloupe/admin)
   - username: admin
-  - password: 
+  - password: admin
 
 ssh, scp, rsync:
   - username: vagrant
