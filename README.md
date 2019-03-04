@@ -90,7 +90,7 @@ ssh, scp, rsync:
 - GSearch HEAD
 - PHP 5.5.9-1ubuntu4.17
 - Java 8 (Oracle)
-- FITS 0.10.1
+- FITS 1.1.1
 - drush 6.3.0
 - jQuery 1.10.2
 
