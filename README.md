@@ -100,6 +100,38 @@ ssh, scp, rsync:
 - drush 6.3.0
 - jQuery 1.10.2
 
+## Run in a multiple VM configuration
+To run this vm side by side with Islandora 8 or another VM with conflicting ports do the following
+
+Prerequisite vagrant plugins for full operation.
+```shell
+  # For more info https://github.com/dotless-de/vagrant-vbguest
+$ vagrant plugin install vagrant-vbguest
+
+  # For more info https://github.com/cogitatio/vagrant-hostsupdater
+$ vagrant plugin install vagrant-hostsupdater
+```
+To start this as a second VM either set a enviroment variable `ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS` to TRUE or run the following command.
+```shell
+$ ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS='TRUE' vagrant up
+```
+
+#### NOTE:
+`vagrant-hostsupdater` will temporarily update the host machine's `/etc/hosts` file and remove it when vagrant is destroyed.
+```txt
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+33.33.33.10  islandora  # VAGRANT: 67ed63b757392fOOc6a4e5Od8a6b6428 (default) / 7d727ed8-557g-4be8-9e13-589444a57754
+```
+
+
 ## Maintainers
 
 * [Don Richards](https://github.com/donrichards)
