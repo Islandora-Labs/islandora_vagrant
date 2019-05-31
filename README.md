@@ -47,7 +47,7 @@ export ISLANDORA_VAGRANT_FORWARD="FALSE"
 
 ## Connect
 
-Note: The supplied links apply only to this local vagrant system. They could vary in other installations. 
+Note: The supplied links apply only to this local vagrant system. They could vary in other installations.
 
 You can connect to the machine via the browser at [http://localhost:8000](http://localhost:8000).
 
@@ -101,9 +101,9 @@ ssh, scp, rsync:
 - jQuery 1.10.2
 
 ## Run in a multiple VM configuration
-To run this vm side by side with Islandora 8 or another VM with conflicting ports do the following
+To run this vm side by side with Islandora 8 or another VM with conflicting ports do the following.
 
-Prerequisite vagrant plugins for full operation.
+To use this configuration, you must install two Vagrant plugins.
 ```shell
   # For more info https://github.com/dotless-de/vagrant-vbguest
 $ vagrant plugin install vagrant-vbguest
@@ -111,7 +111,11 @@ $ vagrant plugin install vagrant-vbguest
   # For more info https://github.com/cogitatio/vagrant-hostsupdater
 $ vagrant plugin install vagrant-hostsupdater
 ```
-To start this as a second VM either set a enviroment variable `ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS` to TRUE or run the following command.
+To start this as a second VM either:
+* set a enviroment variable ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS or
+* run the following command: ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS='TRUE' vagrant up
+
+You will be asked to enter your local user password. When Vagrant stops running, Islandora 7.x will be available at http://33.33.33.10:8000.
 ```shell
 $ ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS='TRUE' vagrant up
 ```
@@ -130,7 +134,7 @@ $ ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS='TRUE' vagrant up
 ::1             localhost
 33.33.33.10  islandora  # VAGRANT: 67ed63b757392fOOc6a4e5Od8a6b6428 (default) / 7d727ed8-557g-4be8-9e13-589444a57754
 ```
-
+Also note that each vm must be halted separately, from within the directories on the host where they were started with vagrant up.
 
 ## Maintainers
 
