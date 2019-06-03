@@ -112,8 +112,8 @@ $ vagrant plugin install vagrant-vbguest
 $ vagrant plugin install vagrant-hostsupdater
 ```
 To start this as a second VM either:
-* set a enviroment variable ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS or
-* run the following command: ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS='TRUE' vagrant up
+* set a enviroment variable `ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS` or
+* run the following command: `ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS='TRUE' vagrant up`
 
 You will be asked to enter your local user password. When Vagrant stops running, Islandora 7.x will be available at http://33.33.33.10:8000.
 ```shell
