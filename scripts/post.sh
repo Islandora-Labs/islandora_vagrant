@@ -44,8 +44,25 @@ fi
 
 cat <<'EOT' >> /home/vagrant/.bashrc
 
+echo '                                                  ' 
+echo '                 ,     \    /      ,              ' 
+echo '                / \    )\__/(     / \             ' 
+echo '               /   \  (_\  /_)   /   \            ' 
+echo '  ____________/_____\__\@  @/___/_____\_________  '
+echo ' |                     |\../|                   | '
+echo ' |                      \VV/                    | '
+echo ' |                                              | '
+echo ' |             Islandora 7.x-1.13               | '
+echo ' |                                              | '
+echo " |  I feel like we've been here before?!?!      | "      
+echo ' |______________________________________________| '
+echo '          |    /\ /      \\       \ /\    |       '
+echo '          |  /   V        ))       V   \  |       ' 
+echo '          |/     `       //        `     \|       ' 
+echo '          `              V                `       '
+echo '      
 echo '┌----------------------------------------------------------------------┐'
-echo '| Welcome to the Islandora 7.x Development box. Islandora is at        |'
+echo '| Welcome to the Islandora 7.x-1.13 Release box. Islandora is at       |'
 echo '| http://localhost:8000.                                               |'
 echo '|                                                                      |'
 echo '| User: admin                                                          |'
