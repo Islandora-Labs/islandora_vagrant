@@ -19,3 +19,6 @@ SOLR_HOME="/usr/local/solr"
 SOLR_VERSION=4.10.4
 
 DRUPAL_HOME="/var/www/drupal"
+
+# Uncomment next line to enable Cantaloupe as Image Server
+# CANTALOUPE_SETUP="TRUE"

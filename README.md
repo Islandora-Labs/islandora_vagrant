@@ -11,8 +11,6 @@ N.B. This virtual machine **should not** be used in production.
 
 1. [VirtualBox](https://www.virtualbox.org/)
   * Be sure to install a version of VirtualBox that [is compatible with Vagrant](https://www.vagrantup.com/docs/virtualbox/)
-2. [Vagrant](http://www.vagrantup.com)
-  * Important: be sure to install Vagrant version 2.0.3 or higher
   * If upgrading from a previous version run ```bash vagrant plugin update``` to avoid plugin issues
 3. [git](https://git-scm.com/)
 
@@ -32,7 +30,7 @@ The files involved will also exceed 10GB. Your host machine will need at least t
 
 ### Hostname and Port Forwarding
 
-If you use a DNS or host file management plugin with Vagrant,  you may want to set a specific hostname for the virtual machine and disable port forwarding. You can do that with the `ISLANDORA_VAGRANT_HOSTNAME` and `ISLANDORA_VAGRANT_FORWARD` variables. For example:
+If you use a DNS or host file management plugin with Vagrant, you may want to set a specific hostname for the virtual machine and disable port forwarding. You can do that with the `ISLANDORA_VAGRANT_HOSTNAME` and `ISLANDORA_VAGRANT_FORWARD` variables. For example:
 
 ```bash
 export ISLANDORA_VAGRANT_HOSTNAME="islandora.vagrant.test"
@@ -47,7 +45,7 @@ export ISLANDORA_VAGRANT_FORWARD="FALSE"
 
 ## Connect
 
-Note: The supplied links apply only to this local vagrant system. They could vary in other installations. 
+Note: The supplied links apply only to this local vagrant system. They could vary in other installations.
 
 You can connect to the machine via the browser at [http://localhost:8000](http://localhost:8000).
 
@@ -71,6 +69,10 @@ MySQL:
   - username: fedoraAdmin
   - password: fedoraAdmin
 
+[cantaloupe admin:](http://localhost:8080/cantaloupe/admin)
+  - username: admin
+  - password: admin
+
 ssh, scp, rsync:
   - username: vagrant
   - password: vagrant
@@ -92,14 +94,50 @@ ssh, scp, rsync:
 - GSearch HEAD
 - PHP 5.5.9-1ubuntu4.17
 - Java 8 (Oracle)
-- FITS 0.10.1
+- FITS 1.1.1
 - drush 6.3.0
 - jQuery 1.10.2
 
+## Run in a multiple VM configuration
+To run this vm side by side with Islandora 8 or another VM with conflicting ports do the following.
+
+To use this configuration, you must install two Vagrant plugins.
+```shell
+  # For more info https://github.com/dotless-de/vagrant-vbguest
+$ vagrant plugin install vagrant-vbguest
+
+  # For more info https://github.com/cogitatio/vagrant-hostsupdater
+$ vagrant plugin install vagrant-hostsupdater
+```
+To start this as a second VM either:
+* set a enviroment variable `ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS` or
+* run the following command: `ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS='TRUE' vagrant up`
+
+You will be asked to enter your local user password. When Vagrant stops running, Islandora 7.x will be available at http://33.33.33.10:8000.
+```shell
+$ ISLANDORA_VAGRANT_MULTIPLE_ISLANDORAS='TRUE' vagrant up
+```
+
+#### NOTE:
+`vagrant-hostsupdater` will temporarily update the host machine's `/etc/hosts` file and remove it when vagrant is destroyed.
+```txt
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+33.33.33.10  islandora  # VAGRANT: 67ed63b757392fOOc6a4e5Od8a6b6428 (default) / 7d727ed8-557g-4be8-9e13-589444a57754
+```
+Also note that each vm must be halted separately, from within the directories on the host where they were started with vagrant up.
+
 ## Maintainers
 
-* [Luke Taylor](https://github.com/lutaylor)
 * [Don Richards](https://github.com/donrichards)
+* [Ben Rosner](https://github.com/br2490)
 
 ## Authors
 
