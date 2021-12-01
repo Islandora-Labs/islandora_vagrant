@@ -1,3 +1,8 @@
+[<img width="956" alt="Screen Shot 2021-08-11 at 1 20 55 PM" src="https://user-images.githubusercontent.com/2738244/129074556-76f3c3ca-e1b1-4e45-8da0-b07fc8ffdb35.png">](https://islandora.github.io/documentation/)
+This documentation covers the latest release of Islandora 7.x. For the very latest in Islandora, we recommend [Islandora 8 (also known as 2.x.x)](https://islandora.github.io/documentation/). Community switch to semantic versioning instead of tying to Drupal Version.
+- [Docker Version of Islandora 2.0](https://github.com/Islandora-Devops/isle-dc)
+- [Ansible Version of Islandora 2.0](https://github.com/Islandora-Devops/islandora-playbook)
+
 # Islandora Vagrant [![Build Status](https://travis-ci.org/Islandora-Labs/islandora_vagrant.svg?branch=master)](https://travis-ci.org/Islandora-Labs/islandora_vagrant)
 
 ## Introduction
@@ -12,7 +17,8 @@ N.B. This virtual machine **should not** be used in production.
 1. [VirtualBox](https://www.virtualbox.org/)
   * Be sure to install a version of VirtualBox that [is compatible with Vagrant](https://www.vagrantup.com/docs/virtualbox/)
 2. [Vagrant](https://www.vagrantup.com/)
-  * Important: be sure to install Vagrant version 2.0.3 or higher
+  * Important: be sure to install Vagrant version 2.0.3 or higher<img width="956" alt="129074556-76f3c3ca-e1b1-4e45-8da0-b07fc8ffdb35" src="https://user-images.githubusercontent.com/2738244/144249736-b361375f-c878-4931-b27e-b73e555f1d11.png">
+
   * If upgrading from a previous version run ```vagrant plugin update``` to avoid plugin issues
 3. [git](https://git-scm.com/)
 
