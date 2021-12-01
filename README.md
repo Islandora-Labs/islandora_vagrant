@@ -1,5 +1,5 @@
 [<img width="956" alt="Screen Shot 2021-08-11 at 1 20 55 PM" src="https://user-images.githubusercontent.com/2738244/129074556-76f3c3ca-e1b1-4e45-8da0-b07fc8ffdb35.png">](https://islandora.github.io/documentation/)
-This documentation covers the latest release of Islandora 7.x. For the very latest in Islandora, we recommend [Islandora 8 (also known as 2.x.x)](https://islandora.github.io/documentation/). Community switch to semantic versioning instead of tying to Drupal Version.
+<hr>This documentation covers the latest release of Islandora 7.x. For the very latest in Islandora, we recommend [Islandora 8 (also known as 2.x.x)](https://islandora.github.io/documentation/). Community switch to semantic versioning instead of tying to Drupal Version.
 - [Docker Version of Islandora 2.0](https://github.com/Islandora-Devops/isle-dc)
 - [Ansible Version of Islandora 2.0](https://github.com/Islandora-Devops/islandora-playbook)
 
