@@ -17,8 +17,7 @@ N.B. This virtual machine **should not** be used in production.
 1. [VirtualBox](https://www.virtualbox.org/)
   * Be sure to install a version of VirtualBox that [is compatible with Vagrant](https://www.vagrantup.com/docs/virtualbox/)
 2. [Vagrant](https://www.vagrantup.com/)
-  * Important: be sure to install Vagrant version 2.0.3 or higher<img width="956" alt="129074556-76f3c3ca-e1b1-4e45-8da0-b07fc8ffdb35" src="https://user-images.githubusercontent.com/2738244/144249736-b361375f-c878-4931-b27e-b73e555f1d11.png">
-
+  * Important: be sure to install Vagrant version 2.0.3 or higher
   * If upgrading from a previous version run ```vagrant plugin update``` to avoid plugin issues
 3. [git](https://git-scm.com/)
 
