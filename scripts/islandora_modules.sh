@@ -20,7 +20,7 @@ sudo chmod -R 755 "$DRUPAL_HOME"/sites/default/files
 # Clone all Islandora Foundation modules
 cd "$DRUPAL_HOME"/sites/all/modules || exit
 while read -r LINE; do
-  git clone https://github.com/Islandora/"$LINE"
+  git clone --branch 7.x https://github.com/Islandora/"$LINE"
 done < "$SHARED_DIR"/configs/islandora-module-list-sans-tuque.txt
 
 # Set git filemode false for git
