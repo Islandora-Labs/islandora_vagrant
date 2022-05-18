@@ -38,7 +38,7 @@ if [ ! -d libraries ]; then
 fi
 cd "$DRUPAL_HOME"/sites/all/libraries || exit
 git clone https://github.com/Islandora/tuque.git
-git clone git://github.com/scholarslab/BagItPHP.git
+git clone https://github.com/scholarslab/BagItPHP.git
 git clone https://github.com/Islandora/citeproc-php.git
 
 cd "$DRUPAL_HOME"/sites/all/libraries/tuque || exit
